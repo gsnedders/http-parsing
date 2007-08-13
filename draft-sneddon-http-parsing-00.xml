@@ -3,6 +3,7 @@
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY RFC2616 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2616.xml">
 <!ENTITY ASCII SYSTEM "http://xml.resource.org/public/rfc/bibxml2/reference.ANSI.X3-4.1986.xml">
+<!ENTITY HTML5 SYSTEM "reference.W3C.ED-html5-20070810.xml">
 <!ENTITY title "Tolerant HTTP Parsing">
 ]>
 <?xml-stylesheet type="text/xsl" href="rfc2629.xslt"?>
@@ -41,7 +42,7 @@
 	<abstract>
 		<t>The HyperText Transfer Protocol (HTTP) has been widely used by the 
 		  World Wide Web (WWW) since 1990. This specification attempts to define
-		  how to parse HTTP requests and responses according to the tolerant
+		  how to parse HTTP requests and responses according to the current
 		  de-facto standards used by user-agents (UAs) at the time
 		  of writing.</t>
 	</abstract>
@@ -51,18 +52,87 @@
 	<section title="Introduction">
 		<t>Ever since HTTP's conception, there have never been any defined
 		  standards about its parsing in the real world.
-		  HTTP/1.1 <xref target="RFC2616">RFC&nbsp;2616</xref> tried to improve
-		  this situation with a section (19.3) entited "Tolerant Applications",
-		  providing advice about parsing requests and responses. However, it did
-		  not go into more specific details that are needed for interoperability
-		  with current (non-conformant) servers.</t>
+		  <xref target="RFC2616"/> tried to improve this situation with a
+		  section (19.3) entited "Tolerant Applications", providing advice about
+		  parsing requests and responses. However, it did not go into specific
+		  details that are needed for interoperability with current
+		  (non-conformant) servers. The lack of any current specification
+		  defining such specifics makes it hard for any new UA to be created
+		  without first spending large amounts of time reverse engineering what
+		  is in cases purely bizzare behaviour, which unless you know about
+		  beforehand, you may not write enough test cases to find some of the
+		  oddest behaviour.</t>
+		
+		<t>This specification aims to help the above mentioned problem by
+		  documenting the behaviour of UAs at the time of writing. As with any
+		  data format without specified error handling, this behaviour is likely
+		  to change over time.</t>
 		
 		<!-- !Requirements Language -->
 		<section title="Requirements Language">
 			<t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL",
 			  "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and
 			  "OPTIONAL" in this document are to be interpreted as described in
-			  <xref target="RFC2119">RFC&nbsp;2119</xref>.</t>
+			  <xref target="RFC2119"/>.</t>
+		</section>
+		
+		<!-- !Conformance Requirements -->
+		<section title="Conformance Requirements">
+			<t>This specification is defined in terms of the US-ASCII character
+			  set, as defined in <xref target="ANSI.X3-4.1986"/>.</t>
+			  
+			<t>The conformance requirements of this specification are phrased as
+			  algorithms and may be implemented in any manner, so long as the
+			  end result is equivalent (in particular, the algorithms defined in
+			  this specification are intended to be easy to follow, and not
+			  intended to be performant).</t>
+			
+			<t>User agents may impose implementation-specific limits on
+			  otherwise unconstrained inputs, e.g., to prevent denial of service
+			  attacks, to guard against running out of memory, or to work around
+			  platform-specific limitations.</t>
+		</section>
+	</section>
+	
+	<!-- !Parsing -->
+	<section title="Parsing">
+		<t>Implementations of this specification MUST implement the below state
+		  machine, with a single exception: they MAY omit carriage returns (CRs,
+		  US-ASCII code 0x0D) from the name and value of headers.</t>
+		
+		<t>All variables within the below state machine are global in scope.</t>
+		
+		<t>Let position be a pointer to a byte in the input stream, initally
+		  pointing at the first byte.</t>
+		
+		<!-- The below really needs a better name. Suggestions? -->
+		<!-- !Common Sub-States -->
+		<section title="Common Sub-States">
+			<!-- !Skip In-Line Whitespace -->
+			<section title="Skip In-Line Whitespace">
+				<list style="numbers">
+					<t>Advance the position pointer to the next byte.</t>
+					
+					<t>If position points to one of either 0x09 (US-ASCII
+					  horizontal tab) or 0x20 (US-ASCII space) go to step one.</t>
+					
+					<t>Otherwise, return to the algorthim that sent you here.</t>
+				</list>
+			</section>
+			
+			<!-- !Is Linear Whitespace -->
+			<section title="Is Linear Whitespace">
+				<t>If any of the below are true, then return true. Otherwise,
+				  return false.</t>
+				
+				<list style="symbols">
+					<t>Position points to 0x09 (US-ASCII horizontal tab), or</t>
+					<t>Position points to 0x20 (US-ASCII space), or</t>
+					<t>Position points to 0x0A (US-ASCII line feed), and is
+					  followed by either 0x09 (US-ASCII horizontal tab) or 0x20
+					  (US-ASCII space).</t>
+				</list>
+			</section>
 		</section>
 	</section>
 </middle>
@@ -72,6 +142,11 @@
 		&ASCII;
 		&RFC2119;
 		&RFC2616;
+	</references>
+	
+	<!-- !Informative References -->
+	<references title="Informative References">
+		&HTML5;
 	</references>
 </back>
 </rfc>
