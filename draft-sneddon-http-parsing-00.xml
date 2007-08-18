@@ -215,15 +215,15 @@
 	
 	<!-- !Informative References -->
 	<references title="Informative References">
-		<reference anchor="HTML 5">
+		<reference anchor="HTML 5"  target="http://dev.w3.org/cvsweb/~checkout~/html5/spec/Overview.html?rev=1.198">
 			<front>
 				<title>HTML 5</title>
 				<author initials="I." surname="Hickson" fullname="Ian Hickson">
-					<organization/>
+					<organization>Google, Inc.</organization>
 				</author>
 				<date month="August" day="10" year="2007"/>
 			</front>
-			<seriesInfo name="W3C ED" value="ED-html5-20070810"/>
+			<seriesInfo name="World Wide Web Consortium ED" value="ED-html5-20070810"/>
 			<format type="HTML" target="http://dev.w3.org/cvsweb/~checkout~/html5/spec/Overview.html?rev=1.198"/>
 		</reference>
 	</references>
