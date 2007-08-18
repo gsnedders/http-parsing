@@ -100,8 +100,8 @@
 		
 		<!-- !Common Subroutines -->
 		<section title="Common Subroutines">
-			<!-- !Collect Bytes -->
-			<section title="Collect Bytes" anchor="collect-bytes">
+			<!-- !Collect Bytes That Are... -->
+			<section title="Collect Bytes That Are..." anchor="collect-bytes-that-are">
 				<t>When an algorithm requires the parser to "collect bytes", the
 				  following algorithm MUST be run, with "bytes" being the set of
 				  bytes that can be collected:</t>
@@ -122,9 +122,8 @@
 				</list>
 			</section>
 			
-			<!-- Anyone got a better name? -->
-			<!-- !Collect Bytes That Aren't -->
-			<section title="Collect Bytes That Aren't" anchor="collect-bytes-that-arent">
+			<!-- !Collect Bytes That Aren't... -->
+			<section title="Collect Bytes That Aren't..." anchor="collect-bytes-that-arent">
 				<t>When an algorithm requires the parser to "collect bytes that
 				  aren't", the following algorithm MUST be run, with "bytes"
 				  being the set of bytes that cannot be collected:</t>
@@ -148,8 +147,8 @@
 			<!-- !Skip Inline Whitespace -->
 			<section title="Skip Inline Whitespace" anchor="skip-inline-whitespace">
 				<t>When an algorithm requires the parser to "skip inline
-				  whitespace", the parser should <xref target="collect-bytes">
-				  collect bytes</xref> that are 0x09 (US-ASCII horizontal tab)
+				  whitespace", the parser should <xref target="collect-bytes-that-are">
+				  collect bytes that are</xref> 0x09 (US-ASCII horizontal tab)
 				  or 0x20 (US-ASCII space).</t>
 			</section>
 			
@@ -168,6 +167,31 @@
 			</section>
 		</section>
 	</section>
+	
+	<!-- !Further Suggestions -->
+	<appendix title="Further Suggestions">
+		<t>This section is informative.</t>
+		
+		<t>While the scope of this specification is only parsing of HTTP
+		  requests and responses, there are several other things that should be
+		  pointed out to anyone implementing <xref target="RFC2616"/>:</t>
+		
+		<list style="symbols">
+			<t>The Content-Location header SHOULD be ignored. This is due to
+			  multiple versions of Microsoft Internet Information Services (IIS)
+			  sending incorrect Content-Location headers. Implementing this as
+			  required by <xref target="RFC2616"/> will break a significant
+			  number of websites.</t>
+			
+			<t>The Content-Type SHOULD NOT on its own be trusted. Content-Type
+			  sniffing as defined in <xref target="W3C.ED-html5-20070810"/>
+			  should be used to determine the true type of the resource. This
+			  is due to a large number of websites sending incorrect
+			  Content-Type headers, often because the maintainer of the website
+			  cannot change the header, or because the file extension/MIME type
+			  database is outdated.</t>
+		</list>
+	</appendix>
 </middle>
 <back>
 	<!-- !Normative References -->
