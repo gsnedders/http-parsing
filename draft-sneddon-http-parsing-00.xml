@@ -100,8 +100,8 @@
 		
 		<!-- !Common Subroutines -->
 		<section title="Common Subroutines">
-			<!-- !Collect Bytes That Are... -->
-			<section title="Collect Bytes That Are..." anchor="collect-bytes-that-are">
+			<!-- !Collect Bytes That Are In The Group -->
+			<section title="Collect Bytes That Are In The Group" anchor="collect-bytes-that-are">
 				<t>When an algorithm requires the parser to "collect bytes", the
 				  following algorithm MUST be run, with "bytes" being the set of
 				  bytes that can be collected:</t>
@@ -122,8 +122,8 @@
 				</list>
 			</section>
 			
-			<!-- !Collect Bytes That Aren't... -->
-			<section title="Collect Bytes That Aren't..." anchor="collect-bytes-that-arent">
+			<!-- !Collect Bytes That Aren't In The Group -->
+			<section title="Collect Bytes That Aren't In The Group" anchor="collect-bytes-that-arent">
 				<t>When an algorithm requires the parser to "collect bytes that
 				  aren't", the following algorithm MUST be run, with "bytes"
 				  being the set of bytes that cannot be collected:</t>
