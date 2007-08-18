@@ -50,18 +50,17 @@
 <middle>
 	<!-- !Introduction -->
 	<section title="Introduction">
-		<t>Ever since HTTP's conception, there have never been any defined
-		  standards about its parsing in the real world.
-		  <xref target="RFC2616"/> tried to improve this situation with a
-		  section (19.3) entited "Tolerant Applications", providing advice about
-		  parsing requests and responses. However, it did not go into specific
-		  details that are needed for interoperability with current
-		  (non-conformant) servers. The lack of any current specification
-		  defining such specifics makes it hard for any new UA to be created
-		  without first spending large amounts of time reverse engineering what
-		  is in cases purely bizzare behaviour, which unless you know about
-		  beforehand, you may not write enough test cases to find some of the
-		  oddest behaviour.</t>
+		<t>Ever since HTTP's conception, there have never been any standards
+		  regarding its parsing in the real world. <xref target="RFC2616"/>
+		  tried to improve this situation with a section (19.3) entited 
+		  "Tolerant Applications", providing advice about parsing requests and
+		  responses. However, it did not go into specific details that are
+		  needed for interoperability with current (non-conformant) servers. The
+		  lack of any current specification defining such specifics makes it
+		  hard for any new UA to be created without first spending large amounts
+		  of time reverse engineering what is in cases purely bizzare behaviour,
+		  which unless you know about beforehand, you may not write enough test
+		  cases to find some of the oddest behaviour.</t>
 		
 		<t>This specification aims to help the above mentioned problem by
 		  documenting the behaviour of UAs at the time of writing. As with any
@@ -96,12 +95,8 @@
 	
 	<!-- !Parsing -->
 	<section title="Parsing">
-		<t>Implementations of this specification MUST implement the below state
-		  machine, with a single exception: they MAY omit carriage returns (CRs,
-		  US-ASCII code 0x0D) from the name and value of headers.</t>
-		
-		<t>Let position be a pointer to a byte in the input stream, initally
-		  pointing at the first byte.</t>
+		<t>Implementations of this specification MUST implement the below
+		  algorithms.</t>
 		
 		<!-- !Common Subroutines -->
 		<section title="Common Subroutines">
@@ -127,7 +122,8 @@
 				</list>
 			</section>
 			
-			<!-- !Collect Bytes -->
+			<!-- Anyone got a better name? -->
+			<!-- !Collect Bytes That Aren't -->
 			<section title="Collect Bytes That Aren't" anchor="collect-bytes-that-arent">
 				<t>When an algorithm requires the parser to "collect bytes that
 				  aren't", the following algorithm MUST be run, with "bytes"
@@ -150,7 +146,7 @@
 			</section>
 			
 			<!-- !Skip Inline Whitespace -->
-			<section title="Skip Inline Whitespace">
+			<section title="Skip Inline Whitespace" anchor="skip-inline-whitespace">
 				<t>When an algorithm requires the parser to "skip inline
 				  whitespace", the parser should <xref target="collect-bytes">
 				  collect bytes</xref> that are 0x09 (US-ASCII horizontal tab)
@@ -158,7 +154,7 @@
 			</section>
 			
 			<!-- !Is Linear Whitespace -->
-			<section title="Is Linear Whitespace">
+			<section title="Is Linear Whitespace" anchor="is-linear-whitespace">
 				<t>If any of the below are true, then return true. Otherwise,
 				  return false.</t>
 				
