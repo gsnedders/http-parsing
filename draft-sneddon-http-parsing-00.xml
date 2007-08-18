@@ -218,8 +218,12 @@
 		<reference anchor="HTML 5"  target="http://dev.w3.org/cvsweb/~checkout~/html5/spec/Overview.html?rev=1.198">
 			<front>
 				<title>HTML 5</title>
-				<author initials="I." surname="Hickson" fullname="Ian Hickson">
+				<author initials="I." surname="Hickson" fullname="Ian Hickson" role="editor">
 					<organization>Google, Inc.</organization>
+					<email>ian@hixie.ch</email>
+				</author>
+				<author initials="D." surname="Hyatt" fullname="David Hyatt" role="editor">
+					<organization>Apple, Inc.</organization>
 				</author>
 				<date month="August" day="10" year="2007"/>
 			</front>
