@@ -154,15 +154,27 @@
 			
 			<!-- !Is Linear Whitespace -->
 			<section title="Is Linear Whitespace" anchor="is-linear-whitespace">
-				<t>If any of the below are true, then return true. Otherwise,
-				  return false.</t>
+				<t>When an algorithm requires the parser to see if the following
+				  byte "is linear whitespace", the following algorithm MUST be
+				  run:</t>
 				
-				<list style="symbols">
-					<t>Position points to 0x09 (US-ASCII horizontal tab), or</t>
-					<t>Position points to 0x20 (US-ASCII space), or</t>
-					<t>Position points to 0x0A (US-ASCII line feed), and is
+				<list style="numbers">
+					<t>Let "input" and "position" be the same variables as those
+					  of the same name in the algorithm that invoked these
+					  steps.</t>
+					
+					<t>If "position" points to 0x09 (US-ASCII horizontal tab),
+					  then return true, otherwise proceed to the next step.</t>
+					
+					<t>If "position" points to 0x20 (US-ASCII space), then
+					  return true, otherwise proceed to the next step.</t>
+					  
+					<t>If "position" points to 0x0A (US-ASCII line feed), and is
 					  followed by either 0x09 (US-ASCII horizontal tab) or 0x20
-					  (US-ASCII space).</t>
+					  (US-ASCII space), then return true, otherwise proceed to
+					  the next step.</t>
+					
+					<t>The next byte is not linear whitespace. Return false.</t>
 				</list>
 			</section>
 		</section>
@@ -185,7 +197,7 @@
 			
 			<t>The Content-Type SHOULD NOT on its own be trusted. Content-Type
 			  sniffing as defined in <xref target="W3C.ED-html5-20070810"/>
-			  should be used to determine the true type of the resource. This
+			  SHOULD be used to determine the true type of the resource. This
 			  is due to a large number of websites sending incorrect
 			  Content-Type headers, often because the maintainer of the website
 			  cannot change the header, or because the file extension/MIME type
