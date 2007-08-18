@@ -3,7 +3,6 @@
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY RFC2616 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2616.xml">
 <!ENTITY ASCII SYSTEM "http://xml.resource.org/public/rfc/bibxml2/reference.ANSI.X3-4.1986.xml">
-<!ENTITY HTML5 SYSTEM "reference.W3C.ED-html5-20070810.xml">
 <!ENTITY title "Tolerant HTTP Parsing">
 ]>
 <?xml-stylesheet type="text/xsl" href="rfc2629.xslt"?>
@@ -196,7 +195,7 @@
 			  number of websites.</t>
 			
 			<t>The Content-Type SHOULD NOT on its own be trusted. Content-Type
-			  sniffing as defined in <xref target="W3C.ED-html5-20070810"/>
+			  sniffing as defined in <xref target="HTML 5"/>
 			  SHOULD be used to determine the true type of the resource. This
 			  is due to a large number of websites sending incorrect
 			  Content-Type headers, often because the maintainer of the website
@@ -215,7 +214,17 @@
 	
 	<!-- !Informative References -->
 	<references title="Informative References">
-		&HTML5;
+		<reference anchor="HTML 5">
+			<front>
+				<title>HTML 5</title>
+				<author initials="I." surname="Hickson" fullname="Ian Hickson">
+					<organization/>
+				</author>
+				<date month="August" day="10" year="2007"/>
+			</front>
+			<seriesInfo name="W3C ED" value="ED-html5-20070810"/>
+			<format type="HTML" target="http://dev.w3.org/cvsweb/~checkout~/html5/spec/Overview.html?rev=1.198"/>
+		</reference>
 	</references>
 </back>
 </rfc>
