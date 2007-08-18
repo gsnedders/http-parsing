@@ -100,24 +100,61 @@
 		  machine, with a single exception: they MAY omit carriage returns (CRs,
 		  US-ASCII code 0x0D) from the name and value of headers.</t>
 		
-		<t>All variables within the below state machine are global in scope.</t>
-		
 		<t>Let position be a pointer to a byte in the input stream, initally
 		  pointing at the first byte.</t>
 		
-		<!-- The below really needs a better name. Suggestions? -->
-		<!-- !Common Sub-States -->
-		<section title="Common Sub-States">
-			<!-- !Skip In-Line Whitespace -->
-			<section title="Skip In-Line Whitespace">
+		<!-- !Common Subroutines -->
+		<section title="Common Subroutines">
+			<!-- !Collect Bytes -->
+			<section title="Collect Bytes" anchor="collect-bytes">
+				<t>When an algorithm requires the parser to "collect bytes", the
+				  following algorithm MUST be run, with "bytes" being the set of
+				  bytes that can be collected:</t>
+				
 				<list style="numbers">
-					<t>Advance the position pointer to the next byte.</t>
+					<t>Let "input" and "position" be the same variables as those
+					  of the same name in the algorithm that invoked these
+					  steps.</t>
 					
-					<t>If position points to one of either 0x09 (US-ASCII
-					  horizontal tab) or 0x20 (US-ASCII space) go to step one.</t>
+					<t>Let "result" be an empty string.</t>
 					
-					<t>Otherwise, return to the algorthim that sent you here.</t>
+					<t>While "position" doesn't point past the end of "input"
+					  and the byte at position is one of the "bytes", append
+					  that byte to the end of "result" and advance "position" to
+					  the next byte in "input".</t>
+					
+					<t>Return "result".</t>
 				</list>
+			</section>
+			
+			<!-- !Collect Bytes -->
+			<section title="Collect Bytes That Aren't" anchor="collect-bytes-that-arent">
+				<t>When an algorithm requires the parser to "collect bytes that
+				  aren't", the following algorithm MUST be run, with "bytes"
+				  being the set of bytes that cannot be collected:</t>
+				
+				<list style="numbers">
+					<t>Let "input" and "position" be the same variables as those
+					  of the same name in the algorithm that invoked these
+					  steps.</t>
+					
+					<t>Let "result" be an empty string.</t>
+					
+					<t>While "position" doesn't point past the end of "input"
+					  and the byte at position is not one of the "bytes", append
+					  that byte to the end of "result" and advance "position" to
+					  the next byte in "input".</t>
+					
+					<t>Return "result".</t>
+				</list>
+			</section>
+			
+			<!-- !Skip Inline Whitespace -->
+			<section title="Skip Inline Whitespace">
+				<t>When an algorithm requires the parser to "skip inline
+				  whitespace", the parser should <xref target="collect-bytes">
+				  collect bytes</xref> that are 0x09 (US-ASCII horizontal tab)
+				  or 0x20 (US-ASCII space).</t>
 			</section>
 			
 			<!-- !Is Linear Whitespace -->
