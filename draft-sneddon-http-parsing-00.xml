@@ -14,7 +14,7 @@
 <rfc ipr="full3978" category="exp">
 <front>
 	<title>&title;</title>
-	<author initials="G.M." surname="Sneddon" fullname="Geoffrey Sneddon" role="editor">
+	<author initials="G.M." surname="Sneddon" fullname="Geoffrey Sneddon">
 	<!-- I work for no organisation, so no need for this to even be opened. -->
 	<organization/>
 	<address>
