@@ -184,8 +184,9 @@
 		<t>This section is informative.</t>
 		
 		<t>While the scope of this specification is only parsing of HTTP
-		  requests and responses, there are several other things that should be
-		  pointed out to anyone implementing <xref target="RFC2616"/>:</t>
+		  requests and responses, there are several other things that I am aware
+		  of that should be pointed out to anyone implementing
+		  <xref target="RFC2616"/>:</t>
 		
 		<list style="symbols">
 			<t>The Content-Location header SHOULD be ignored. This is due to
