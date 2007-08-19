@@ -147,8 +147,8 @@
 			<section title="Skip Inline Whitespace" anchor="skip-inline-whitespace">
 				<t>When an algorithm requires the parser to "skip inline
 				  whitespace", the parser MUST <xref target="collect-bytes-that-are">
-				  collect bytes that are</xref> 0x09 (US-ASCII horizontal tab)
-				  or 0x20 (US-ASCII space).</t>
+				  collect bytes that are</xref> either 0x09 (US-ASCII horizontal
+				  tab) or 0x20 (US-ASCII space).</t>
 			</section>
 			
 			<!-- !Is Linear Whitespace -->
