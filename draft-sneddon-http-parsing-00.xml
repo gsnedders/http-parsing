@@ -41,9 +41,8 @@
 	<abstract>
 		<t>The HyperText Transfer Protocol (HTTP) has been widely used by the 
 		  World Wide Web (WWW) since 1990. This specification attempts to define
-		  how to parse HTTP requests and responses according to the current
-		  de-facto standards used by user-agents (UAs) at the time
-		  of writing.</t>
+		  how to parse HTTP requests and responses in a way that is compatible
+		  with user-agents (UAs) and servers at the time of writing.</t>
 	</abstract>
 </front>
 <middle>
