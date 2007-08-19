@@ -146,7 +146,7 @@
 			<!-- !Skip Inline Whitespace -->
 			<section title="Skip Inline Whitespace" anchor="skip-inline-whitespace">
 				<t>When an algorithm requires the parser to "skip inline
-				  whitespace", the parser should <xref target="collect-bytes-that-are">
+				  whitespace", the parser MUST <xref target="collect-bytes-that-are">
 				  collect bytes that are</xref> 0x09 (US-ASCII horizontal tab)
 				  or 0x20 (US-ASCII space).</t>
 			</section>
@@ -167,6 +167,9 @@
 					
 					<t>If "position" points to 0x20 (US-ASCII space), then
 					  return true, otherwise proceed to the next step.</t>
+					
+					<t>If "position" points to 0x0D (US-ASCII character return),
+					  then return true, otherwise proceed to the next step.</t>
 					  
 					<t>If "position" points to 0x0A (US-ASCII line feed), and is
 					  followed by either 0x09 (US-ASCII horizontal tab) or 0x20
@@ -174,6 +177,25 @@
 					  the next step.</t>
 					
 					<t>The next byte is not linear whitespace. Return false.</t>
+				</list>
+			</section>
+			
+			<!-- !Parse Linear Whitespace -->
+			<section title="Parse Linear Whitespace">
+				<t>When an algorithm requires the parser to "parse linear
+				  whitespace", the following algorithm MUST be run:</t>
+				
+				<list style="numbers">
+					<t>Let "input", "position", and "value" be the same
+					  variables as those of the same name in the algorithm that
+					  invoked these steps.</t>
+					
+					<t>If the following byte <xref target="is-linear-whitespace">
+					  is linear whitespace</xref> then advance "position" to the
+					  next byte in "input" before repeating this step.</t>
+					
+					<t>Append a single 0x20 (US-ASCII space) byte to the end of
+					  "value".</t>
 				</list>
 			</section>
 		</section>
