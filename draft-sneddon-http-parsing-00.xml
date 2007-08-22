@@ -4,7 +4,6 @@
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY RFC2616 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2616.xml">
 <!ENTITY ASCII SYSTEM "http://xml.resource.org/public/rfc/bibxml2/reference.ANSI.X3-4.1986.xml">
-<!ENTITY title "Tolerant HTTP Parsing">
 <!ENTITY % rfc2629-xhtml PUBLIC "-//IETF//ENTITIES XHTML subset for RFC 2629//EN" "http://xml.resource.org/authoring/rfc2629-xhtml.ent">
 <!ENTITY % rfc2629-other PUBLIC "-//IETF//ENTITIES Other for RFC 2629//EN" "http://xml.resource.org/authoring/rfc2629-other.ent">
 %rfc2629-xhtml;
@@ -18,7 +17,7 @@
 <?rfc subcompact="no"?>
 <rfc ipr="full3978" category="exp">
 <front>
-	<title>&title;</title>
+	<title>Tolerant HTTP Parsing</title>
 	<author initials="G.M." surname="Sneddon" fullname="Geoffrey Sneddon">
 	<!-- I work for no organisation, so no need for this to even be opened. -->
 	<organization/>
@@ -70,8 +69,11 @@
 		  data format without specified error handling, this behaviour is likely
 		  to change over time.</t>
 		
-		<!-- !Requirements Language -->
-		<section title="Requirements Language">
+		<!-- !Notational Conventions -->
+		<section title="Notational Conventions">
+			<t>This specification is defined in terms of the US-ASCII character
+			  set, as defined in <xref target="ANSI.X3-4.1986"/>.</t>
+			
 			<t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL",
 			  "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and
 			  "OPTIONAL" in this document are to be interpreted as described in
@@ -80,16 +82,13 @@
 		
 		<!-- !Conformance Requirements -->
 		<section title="Conformance Requirements">
-			<t>This specification is defined in terms of the US-ASCII character
-			  set, as defined in <xref target="ANSI.X3-4.1986"/>.</t>
-			  
 			<t>The conformance requirements of this specification are phrased as
 			  algorithms and may be implemented in any manner, so long as the
 			  end result is equivalent (in particular, the algorithms defined in
 			  this specification are intended to be easy to follow, and not
 			  intended to be performant).</t>
 			
-			<t>User agents may impose implementation-specific limits on
+			<t>Implementations may impose implementation-specific limits on
 			  otherwise unconstrained inputs, e.g., to prevent denial of service
 			  attacks, to guard against running out of memory, or to work around
 			  platform-specific limitations.</t>
@@ -98,9 +97,6 @@
 	
 	<!-- !Parsing -->
 	<section title="Parsing">
-		<t>Implementations of this specification MUST implement the below
-		  algorithms.</t>
-		
 		<!-- !Common Subroutines -->
 		<section title="Common Subroutines">
 			<!-- !Collect Bytes That Are In The Group -->
