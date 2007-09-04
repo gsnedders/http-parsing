@@ -47,9 +47,9 @@
 	<!-- !Abstract -->
 	<abstract>
 		<t>The HyperText Transfer Protocol (HTTP) has been widely used by the 
-		  World Wide Web (WWW) since 1990. This specification attempts to define
-		  how to parse HTTP requests and responses in a way that is compatible
-		  with user-agents (UAs) and servers at the time of writing.</t>
+		  World Wide Web (WWW) since 1990. This specification updates RFC 2616,
+		  defining how to parse HTTP requests and responses in a way that is
+		  compatible with user-agents (UAs) and servers at the time of writing.</t>
 	</abstract>
 	
 	<!-- Editorial Note -->
@@ -68,10 +68,6 @@
 			<t>The majority of the parsing algorithm is yet to be written.</t>
 			
 			<t><xref target="RFC2616"/> isn't properly referenced.</t>
-			
-			<t>It is unclear that this specification is intended to be a delta
-			  specification extending <xref target="RFC2616"/>, but should be
-			  compatible with all future versions of HTTP.</t>
 		</list></t>
 	</note>
 </front>
