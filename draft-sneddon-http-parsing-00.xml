@@ -68,6 +68,14 @@
 			<t>The majority of the parsing algorithm is yet to be written.</t>
 			
 			<t><xref target="RFC2616"/> isn't properly referenced.</t>
+			
+			<t>Security Considerations needs:
+				<list style="letters">
+					<t>"one thing for the security section of that draft is the need for implementations to follow the spec exactly lest they be vulnerable to content stuffing that abuses differences in parsing algorithms" - Hixie</t>
+					
+					<t>Most are unchanged from <xref target="RFC2616"/>.</t>
+				</list>
+			</t>
 		</list></t>
 	</note>
 </front>
@@ -241,7 +249,7 @@
 	<appendix title="Contributors">
 		<t>The following people contributed to this document (often by helping
 		  to reverse engineer current behaviour, or helping to review this
-		  document): Philip Taylor.</t>
+		  document): Ian Hickson, Philip Taylor.</t>
 	</appendix>
 	
 	<!-- !Further Suggestions -->
