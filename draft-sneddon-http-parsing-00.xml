@@ -18,7 +18,7 @@
 <?rfc comments="yes"?>
 <?rfc strict="yes"?>
 <?rfc inline="yes"?>
-<rfc ipr="full3978" category="info">
+<rfc ipr="full3978" category="info" updates="2616">
 <front>
 	<title>Tolerant HTTP Parsing</title>
 	<author initials="G.M." surname="Sneddon" fullname="Geoffrey Sneddon">
@@ -59,7 +59,8 @@
 		<t>This is a work in progress, and may change in part, or in whole. Do
 		  not take anything in any draft version to be final. Comments are
 		  very welcome, and should be sent to
-		  <eref target="mailto:geoffers+tolerant@gmail.com"/>.</t>
+		  <eref target="mailto:geoffers+tolerant@gmail.com">geoffers+tolerant@gmail.com</eref>
+		  .</t>
 		
 		<t>Known issues as of writing:</t>
 		
@@ -233,6 +234,11 @@
 		<t>This specification is just a parsing algorithm, and therefore
 		  any risks (excluding implementations issues such as buffer overflows)
 		  are inherited from <xref target="RFC2616"/>.</t>
+	</section>
+	
+	<!-- !IANA Considerations -->
+	<section title="IANA Considerations">
+		<t>This document has no actions for IANA.</t>
 	</section>
 	
 	<!-- !Contributors -->
