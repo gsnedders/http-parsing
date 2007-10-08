@@ -38,7 +38,8 @@
 		<uri>http://geoffers.uni.cc/</uri>
 	</address>
 	</author>
-	<date month="September" year="2007" />
+	<!-- This is omitted while in draft, else I always forget to change it -->
+	<date/>
 	<area>Applications</area>
 	<keyword>I-D</keyword>
 	<keyword>Internet-Draft</keyword>
