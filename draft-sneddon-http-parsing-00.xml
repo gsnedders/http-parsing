@@ -87,17 +87,16 @@
 		  tried to improve this situation with a section (19.3) entited 
 		  "Tolerant Applications", providing advice about parsing requests and
 		  responses. However, it did not go into specific details that are
-		  needed for interoperability with current (non-conformant) servers. The
-		  lack of any current specification defining such specifics makes it
-		  hard for any new UA to be created without first spending large amounts
-		  of time reverse engineering what is in cases purely bizzare behaviour,
-		  which unless you know about beforehand, you may not write enough test
-		  cases to find some of the oddest behaviour.</t>
+		  needed for interoperability with current (non-conformant) user-agents
+		  (UAs) and servers. The lack of any current specification defining such
+		  specifics makes it hard for any new UA to be created without first
+		  spending large amounts of time reverse engineering what is in cases
+		  purely bizzare behaviour, which unless you know about beforehand, you
+		  may not write enough test cases to find some of the oddest behaviour.</t>
 		
 		<t>This specification aims to help the above mentioned problem by
-		  documenting the behaviour of UAs at the time of writing. As with any
-		  data format without specified error handling, this behaviour is likely
-		  to change over time.</t>
+		  documenting the behaviour of UAs at the time of writing. Hopefully,
+		  over time, the real world will align itself with this specification.</t>
 		
 		<!-- !Notational Conventions -->
 		<section title="Notational Conventions">
