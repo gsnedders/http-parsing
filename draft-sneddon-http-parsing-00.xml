@@ -231,6 +231,50 @@
 		</section>
 	</section>
 	
+	<!-- !Post Parsing -->
+	<section title="Post Parsing">
+		<t>This section details how certain headers should be treated after
+		  parsing.</t>
+		
+		<!-- !Unescaping Quoted Strings -->
+		<section title="Unescaping Quoted Strings">
+			<t>To unescape a quoted string (i.e., a string that follows the
+			  quoted-string specification in <xref target="RFC2616"/>), the
+			  following algorithm MUST be run:</t>
+			
+			<t><list style="numbers">
+				<t>Let "input" be the string being parsed.</t>
+				
+				<t>Let "string" be the unescaped output string.</t>
+				
+				<t>Let "position" be a pointer into input, initially pointing at
+				  the start of the string.</t>
+				
+				<t>If "input" has exactly two 0x22 (US-ASCII quotation mark)
+				  bytes, and they are the first and last bytes of the string,
+				  then continue with this algorithm. Otherwise, return "input",
+				  as the string does not need to be unescaped.</t>
+				
+				<t>Advance "position" to the next byte.</t>
+				
+				<t>If "position" points to a 0x5C (US-ACSII backslash), skip to
+				  step 8, otherwise continue on to step 7.</t>
+				
+				<t>Append the current byte (that "position" points to) to
+				  "string".</t>
+				
+				<t>Advance "position" to the next byte.</t>
+				
+				<t>If "position" is not past the end of "input", return to step
+				  6 of this algorithm.</t>
+				
+				<t>Remove the final byte from "string".</t>
+				
+				<t>Return "string".</t>
+			</list></t>
+		</section>
+	</section>
+	
 	<!-- !Security Considerations -->
 	<section title="Security Considerations">
 		<t><cref>This section is just a very rough draft.</cref></t>
