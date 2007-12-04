@@ -5,7 +5,6 @@ include HTTP headers within them).
 
 """
 
-
 __version__ = "0.1"
 
 __all__ = ["HTTPParsingReponseTestServer"]
@@ -31,7 +30,7 @@ class HTTPParsingReponseTestServer(SimpleHTTPServer.SimpleHTTPRequestHandler):
     def do_HEAD(self):
         """Serve a HEAD request."""
         f = self.send_head()
-        if f:
+        if f and not self.wfile.tell():
             data = f.read()
             f.close()
             LFLF = data.find("\n\n")
