@@ -30,15 +30,16 @@ class HTTPParsingReponseTestServer(SimpleHTTPServer.SimpleHTTPRequestHandler):
     def do_HEAD(self):
         """Serve a HEAD request."""
         f = self.send_head()
-        if f and not self.wfile.tell():
-            data = f.read()
+        if f:
+            if not self.wfile.tell():
+                data = f.read()
+                LFLF = data.find("\n\n")
+                LFCRLF = data.find("\n\r\n")
+                if (LFLF < LFCRLF):
+                    self.wfile.write(data[:LFLF])
+                else:
+                    self.wfile.write(data[:LFCRLF])
             f.close()
-            LFLF = data.find("\n\n")
-            LFCRLF = data.find("\n\r\n")
-            if (LFLF < LFCRLF):
-                self.wfile.write(data[:LFLF])
-            else:
-                self.wfile.write(data[:LFCRLF])
 
     def send_head(self):
         """Common code for GET and HEAD commands.
