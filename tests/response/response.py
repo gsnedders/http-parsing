@@ -11,9 +11,10 @@ __version__ = "0.1"
 __all__ = ["HTTPParsingReponseTestServer"]
 
 import os
-import SimplePieHTTPServer
+import BaseHTTPServer
+import SimpleHTTPServer
 
-class HTTPParsingReponseTestServer(SimplePieHTTPServer.SimpleHTTPRequestHandler):
+class HTTPParsingReponseTestServer(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
     """Simple HTTP request handler with GET and HEAD commands.
 
@@ -82,7 +83,7 @@ class HTTPParsingReponseTestServer(SimplePieHTTPServer.SimpleHTTPRequestHandler)
         return f
 
 
-def test(HandlerClass = SimpleHTTPRequestHandler,
+def test(HandlerClass = HTTPParsingReponseTestServer,
          ServerClass = BaseHTTPServer.HTTPServer):
     BaseHTTPServer.test(HandlerClass, ServerClass)
 
