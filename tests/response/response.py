@@ -31,14 +31,16 @@ class HTTPParsingReponseTestServer(SimpleHTTPServer.SimpleHTTPRequestHandler):
         """Serve a HEAD request."""
         f = self.send_head()
         if f:
-            if not self.wfile.tell():
+            if self.path.startswith("/tests"):
                 data = f.read()
                 LFLF = data.find("\n\n")
                 LFCRLF = data.find("\n\r\n")
-                if (LFLF < LFCRLF):
-                    self.wfile.write(data[:LFLF])
+                if (-1 < LFLF < LFCRLF):
+                    self.wfile.write(data[:LFLF + 2])
+                elif (LFCRLF > -1):
+                    self.wfile.write(data[:LFCRLF + 3])
                 else:
-                    self.wfile.write(data[:LFCRLF])
+                    self.send_error(500, "Internal Server Error")
             f.close()
 
     def send_head(self):
