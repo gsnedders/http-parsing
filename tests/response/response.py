@@ -73,7 +73,7 @@ class HTTPParsingReponseTestServer(SimpleHTTPServer.SimpleHTTPRequestHandler):
         except IOError:
             self.send_error(404, "File not found")
             return None
-        if os.path.samefile(path, __file__):
+        if not self.path.startswith("/tests"):
             self.send_response(200)
             self.send_header("Content-type", "text/plain")
             fs = os.fstat(f.fileno())
