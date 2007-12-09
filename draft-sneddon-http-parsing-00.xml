@@ -35,7 +35,7 @@
 		</postal>
 		<phone>+44 7807 360 291</phone>
 		<email>geoffers@gmail.com</email>
-		<uri>http://geoffers.uni.cc/</uri>
+		<uri>http://gsnedders.com/</uri>
 	</address>
 	</author>
 	<!-- This is omitted while in draft, else I always forget to change it -->
@@ -60,7 +60,7 @@
 		<t>This is a work in progress, and may change in part, or in whole. Do
 		  not take anything in any draft version to be final. Comments are
 		  very welcome, and should be sent to
-		  <eref target="mailto:geoffers+tolerant@gmail.com">geoffers+tolerant@gmail.com</eref>
+		  <eref target="mailto:geoffers@gmail.com">geoffers@gmail.com</eref>
 		  .</t>
 		
 		<t>Known issues as of writing:</t>
@@ -72,7 +72,10 @@
 			
 			<t>Security Considerations needs:
 				<list style="letters">
-					<t>"one thing for the security section of that draft is the need for implementations to follow the spec exactly lest they be vulnerable to content stuffing that abuses differences in parsing algorithms" - Hixie</t>
+					<t>"one thing for the security section of that draft is the
+					  need for implementations to follow the spec exactly lest
+					  they be vulnerable to content stuffing that abuses
+					  differences in parsing algorithms" - Hixie</t>
 					
 					<t>Most are unchanged from <xref target="RFC2616"/>.</t>
 				</list>
@@ -332,22 +335,17 @@
 	
 	<!-- !Informative References -->
 	<references title="Informative References">
-		<reference anchor="HTML 5"  target="http://dev.w3.org/cvsweb/~checkout~/html5/spec/Overview.html?rev=1.198">
+		<reference anchor="HTML 5"  target="http://www.whatwg.org/specs/web-apps/current-work/">
 			<front>
 				<title>HTML 5</title>
 				<author initials="I." surname="Hickson" fullname="Ian Hickson" role="editor">
-					<organization>Google, Inc.</organization>
+					<organization>Google</organization>
 					<address>
 						<email>ian@hixie.ch</email>
 					</address>
 				</author>
-				<author initials="D." surname="Hyatt" fullname="David Hyatt" role="editor">
-					<organization>Apple, Inc.</organization>
-				</author>
-				<date month="August" day="10" year="2007"/>
 			</front>
-			<seriesInfo name="World Wide Web Consortium ED" value="ED-html5-20070810"/>
-			<format type="HTML" target="http://dev.w3.org/cvsweb/~checkout~/html5/spec/Overview.html?rev=1.198"/>
+			<format type="HTML" target="http://www.whatwg.org/specs/web-apps/current-work/"/>
 		</reference>
 	</references>
 </back>
