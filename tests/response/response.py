@@ -77,7 +77,10 @@ class HTTPParsingReponseTestServer(SimpleHTTPServer.SimpleHTTPRequestHandler):
             return None
         if not self.path.startswith("/tests"):
             self.send_response(200)
-            self.send_header("Content-type", "text/plain")
+            if self.path == "/runtests.html":
+                self.send_header("Content-type", "text/html")
+            else:
+                self.send_header("Content-type", "text/plain")
             fs = os.fstat(f.fileno())
             self.send_header("Content-Length", str(fs[6]))
             self.send_header("Last-Modified", self.date_time_string(fs.st_mtime))

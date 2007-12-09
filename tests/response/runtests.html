@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<title>HTTP parsing tests</title>
+<style>
+#log {
+    margin-top: 1em;
+}
+#log p {
+    font-family: monospace;
+    margin: 0;
+}
+</style>
+
+<div id="status">Loading...</div>
+<iframe src="/tests/" id="tests" style="display: none"></iframe>
+<div id="log"></div>
+
+<script>
+function log(s) {
+    document.getElementById('log').appendChild(document.createElement('p')).appendChild(document.createTextNode(s));
+}
+
+function compare(exp, got) {
+    var failed = false;
+    function fail(msg) {
+        log(msg);
+        failed = true;
+    }
+    if (exp.HTTP.status != got.status)
+        fail('Got status code '+got.status+', expected '+exp.HTTP.status);
+    if (exp.HTTP.reason != got.statusText)
+        fail('Got status text '+got.statusText+', expected '+exp.HTTP.reason);
+    for (var n in exp.headers) {
+        var exp_v = exp.headers[n];
+        var got_v = got.getResponseHeader(n);
+        if (exp_v != got_v)
+            fail('Got "'+n+'" header "'+got_v+'", expected "'+exp_v+'"');
+    }
+    if (exp.body != got.responseText)
+        fail('Got response body "'+got.responseText+'", expected "'+exp.body+'"');
+
+    return !failed;
+}
+
+function new_xhr() {
+    return window.XMLHttpRequest ? new window.XMLHttpRequest() : new ActiveXObject('MSXML2.XMLHTTP.3.0');
+}
+
+function start() {
+    var tests_frame = document.getElementById('tests').contentWindow.document;
+    var as = tests_frame.getElementsByTagName('a');
+    var test_names = [];
+    for (var i = 0; i < as.length; ++i) {
+        var href = as[i].getAttribute('href');
+        var m = href.match(/(?:.*\/|^)?(.*)\.http$/); // strip .http extension, and any path prefix (for IE)
+        if (!m) continue;
+        test_names.push(m[1]);
+    }
+
+    var passes = 0;
+
+    function finished() {
+        log('Completed');
+        document.getElementById('status').innerHTML = 'Finished. Passed '+passes+'/'+test_names.length+'.';
+    }
+
+    function run_test(test_id) {
+        document.getElementById('status').innerHTML = 'Running... (test '+(test_id+1)+'/'+test_names.length+', currently passed '+passes+')';
+        var name = test_names[test_id];
+        log('Test '+(test_id+1)+': '+name);
+        var xhr1 = new_xhr();
+        xhr1.onreadystatechange = function () {
+            if (xhr1.readyState != 4)
+                return;
+            if (xhr1.status != 200) {
+                log('Failed to get '+name+'.expected: got HTTP status '+xhr1.status);
+                return;
+            }
+            try {
+                var expected = eval('('+xhr1.responseText+')');
+            } catch (e) {
+                log('Failed to parse '+name+'.expected: '+e);
+                return;
+            }
+            var xhr2 = new_xhr();
+            xhr2.onreadystatechange = function () {
+                if (xhr2.readyState != 4)
+                    return;
+                var ok = compare(expected, xhr2);
+                if (ok) ++passes;
+                log('----');
+                if (test_id == test_names.length-1)
+                    finished();
+                else
+                    run_test(test_id+1);
+            };
+            xhr2.open('GET', 'tests/'+name+'.http');
+            xhr2.send(null);
+        }
+        xhr1.open('GET', 'expected/'+name+'.expected');
+        xhr1.send(null);
+    }
+
+    run_test(0);
+}
+
+window.onload = start;
+
+</script>
