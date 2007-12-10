@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """Tolerant HTTP Parsing response parsing test suite HTTP Server.
 
 This builds on SimpleHTTPServer by returning entire files (as they
