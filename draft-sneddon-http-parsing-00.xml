@@ -105,6 +105,14 @@
 			  how to resolve the base IRI of an HTTP document.</t>
 			
 			<t>Add anchor attributes for each and every section.</t>
+			
+			<t>Look over <eref target="http://www.ietf.org/ID-Checklist.html"/>
+			  and <eref target="http://www.rfc-editor.org/rfc-editor/instructions2authors.txt"/>.</t>
+			
+			<t>Do we really need to expand HTTP anywhere? It's listed as being
+			  so well known there is no need to expand it. Either we expand it
+			  elsewhere apart from the abstract (i.e., in the title and its
+			  first occurrence in the body of the document), or nowhere at all.</t>
 		</list></t>
 	</note>
 </front>
