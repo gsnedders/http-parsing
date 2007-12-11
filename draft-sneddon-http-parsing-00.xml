@@ -80,6 +80,31 @@
 					<t>Most are unchanged from <xref target="RFC2616"/>.</t>
 				</list>
 			</t>
+			
+			<t><xref target="unescaping-quoted-strings"/> needs to be rewritten,
+			  as it currently breaks on anything that contains a double
+			  quotation mark.</t>
+			
+			<t>Break parsing/post-parsing into two distinct sections, and have
+			  common subroutines seperated out.</t>
+			
+			<t>Split up acknowledgements and contributors.</t>
+			
+			<t>Show effective valid header name/values as POSIX regex (as this
+			  has a formal specification and is therefore most appropriate for
+			  an I-D/RFC <eref target="http://www.ietf.org/IESG/STATEMENTS/pseudo-code-in-specs.txt"/>).
+			  Extend this beyond header name/values?</t>
+			
+			<t>Investigate whether a reference that needs to be read to
+			  understand an informative section be normative or not (as the
+			  regex would only be inforamtive).</t>
+			
+			<t>Define handling of various things, which should make <xref target="further-suggestions"/>
+			  obsolete. This means moving Content-Type sniffing into this spec,
+			  as part of parsing the Content-Type header, as well as defining
+			  how to resolve the base IRI of an HTTP document.</t>
+			
+			<t>Add anchor attributes for each and every section.</t>
 		</list></t>
 	</note>
 </front>
@@ -88,14 +113,14 @@
 	<section title="Introduction">
 		<t>Ever since HTTP's conception, there have never been any standards
 		  regarding its parsing in the real world. <xref target="RFC2616"/>
-		  tried to improve this situation with a section (19.3) entited 
+		  tried to improve this situation with a section (19.3) entitled 
 		  "Tolerant Applications", providing advice about parsing requests and
 		  responses. However, it did not go into specific details that are
 		  needed for interoperability with current (non-conformant) user-agents
 		  (UAs) and servers. The lack of any current specification defining such
 		  specifics makes it hard for any new UA to be created without first
 		  spending large amounts of time reverse engineering what is in cases
-		  purely bizzare behaviour, which unless you know about beforehand, you
+		  purely bizarre behaviour, which unless you know about beforehand, you
 		  may not write enough test cases to find some of the oddest behaviour.</t>
 		
 		<t>This specification aims to help the above mentioned problem by
@@ -240,7 +265,7 @@
 		  parsing.</t>
 		
 		<!-- !Unescaping Quoted Strings -->
-		<section title="Unescaping Quoted Strings">
+		<section title="Unescaping Quoted Strings" anchor="unescaping-quoted-strings">
 			<t>To unescape a quoted string (i.e., a string that follows the
 			  quoted-string specification in <xref target="RFC2616"/>), the
 			  following algorithm MUST be run:</t>
@@ -300,7 +325,7 @@
 	</appendix>
 	
 	<!-- !Further Suggestions -->
-	<appendix title="Further Suggestions">
+	<appendix title="Further Suggestions" anchor="further-suggestions">
 		<t>This section is informative.</t>
 		
 		<t>While the scope of this specification is only parsing of HTTP
