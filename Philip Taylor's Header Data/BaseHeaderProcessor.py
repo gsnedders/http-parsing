@@ -16,7 +16,7 @@ class BaseHeaderProcessor():
 		xmldoc = minidom.parse(file)
 		headers = xmldoc.getElementsByTagName('header')
 		for header in headers:
-			name = header.attributes["name"].value
+			name = header.attributes["name"].value.lower()
 			uri = header.attributes["uri"].value
 			value = header.attributes["value"].value
 			try:

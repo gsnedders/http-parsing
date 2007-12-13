@@ -1,0 +1,39 @@
+.histogram {
+    border-spacing: 0;
+}
+
+.histogram th {
+    font-weight: normal;
+}
+
+tr {
+    font-size: small;
+    line-height: 1em;
+}
+
+caption {
+    margin-top: 1em;
+    font-size: large;
+    text-align: left;
+}
+
+.histogram th {
+    text-align: right;
+}
+
+.histogram .bar {
+    background-color: red;
+    display: -moz-inline-block;
+    display: inline-block;
+    height: 1em;
+}
+
+.histogram .label {
+    position: absolute;
+    margin-left: 0.5em;
+    white-space: nowrap;
+}
+
+[irrelevant] {
+    display: none;
+}
