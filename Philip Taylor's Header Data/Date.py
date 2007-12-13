@@ -24,11 +24,11 @@ class Date(BaseHeaderProcessor.BaseHeaderProcessor):
 	
 	def date_type(self, date):
 		if self.rfc822.match(date):
-			return "RFC822"
+			return "Valid (RFC 822)"
 		elif self.rfc850.match(date):
-			return "RFC850"
+			return "Valid (RFC 850)"
 		elif self.asctime.match(date):
-			return "asctime()"
+			return "Valid (asctime)"
 		else:
 			return date
 
