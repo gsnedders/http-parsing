@@ -13,7 +13,7 @@ class Date(BaseHeaderProcessor.BaseHeaderProcessor):
 	
 	def process(self):
 		values = {}
-		for header in self.headers["date"]:
+		for header in (self.headers["date"] + self.headers["expires"] + self.headers["last-modified"]):
 			try:
 				values[self.date_type(header["value"])] += 1
 			except KeyError:
