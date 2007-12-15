@@ -21,6 +21,17 @@ function update_status(s)
 	status_element.appendChild(document.createTextNode(s));
 }
 
+function is_case_insensitive_header(header)
+{
+	switch (header.toLowerCase())
+	{
+		case "connection":
+			return true;
+		default:
+			return false;
+	}
+}
+
 function compare(exp, got)
 {
 	var failed = false;
@@ -44,6 +55,10 @@ function compare(exp, got)
 	{
 		var exp_v = exp.headers[n];
 		var got_v = got.getResponseHeader(n);
+		if (is_case_insensitive_header(n))
+		{
+			got_v = got_v.toLowerCase();
+		}
 		if (exp_v != got_v)
 		{
 			fail('Got "' + n + '" header "' + got_v + '", expected "' + exp_v + '"');
