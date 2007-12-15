@@ -1,0 +1,7 @@
+#log {
+margin-top: 1em;
+}
+#log p {
+font-family: monospace;
+margin: 0;
+}
