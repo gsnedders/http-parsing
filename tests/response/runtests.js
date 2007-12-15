@@ -120,7 +120,7 @@ function start()
 	var passes = 0;
 	for (var i = 0; i < test_names.length; i++)
 	{
-		update_status('Running... (test ' + (i + 1) + '/' + (test_names.length + 1) + ', currently passed ' + passes + ')');
+		update_status('Running... (test ' + (i + 1) + '/' + test_names.length + ', currently passed ' + passes + ')');
         log('Test ' + (i + 1) + ': ' + test_names[i]);
 		var pass = run_test(test_names[i]);
 		test_result(test_names[i], pass);
@@ -130,7 +130,7 @@ function start()
 		}
 	}
 	log('Completed');
-	update_status('Finished. Passed ' + passes + '/' + (test_names.length + 1) + '.');
+	update_status('Finished. Passed ' + passes + '/' + test_names.length + '.');
 }
 
 window.onload = start;
