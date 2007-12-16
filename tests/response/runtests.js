@@ -1,3 +1,11 @@
+function empty(element)
+{
+	while (element.firstChild)
+	{
+		element.removeChild(element.firstChild);
+	}
+}
+
 function test_result(test, pass)
 {
 	var results = document.getElementById("results").getElementsByTagName('tbody')[0];
@@ -14,10 +22,7 @@ function log(s)
 function update_status(s)
 {
 	var status_element = document.getElementById('status');
-	while (status_element.firstChild)
-	{
-		status_element.removeChild(status_element.firstChild);
-	}
+	empty(status_element);
 	status_element.appendChild(document.createTextNode(s));
 }
 
@@ -121,6 +126,8 @@ function run_test(test)
 
 function start()
 {
+	empty(document.getElementById("results").getElementsByTagName('tbody')[0]);
+	empty(document.getElementById('log'));
 	var tests_frame = document.getElementById('tests').contentWindow.document;
 	var as = tests_frame.getElementsByTagName('a');
 	var test_names = [];
