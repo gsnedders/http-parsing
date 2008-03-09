@@ -325,16 +325,29 @@
 	<section title="IANA Considerations">
 		<t>This document has no actions for IANA.</t>
 	</section>
+</middle>
+<back>
+	<!-- !Normative References -->
+	<references title="Normative References">
+		&ASCII;
+		&RFC2119;
+		&RFC2616;
+	</references>
+	
+	<!-- !Informative References -->
+	<references title="Informative References">
+		&HTML5;
+	</references>
 	
 	<!-- !Contributors -->
-	<appendix title="Contributors">
+	<section title="Contributors">
 		<t>The following people contributed to this document (often by helping
 		  to reverse engineer current behaviour, or helping to review this
 		  document): Ian Hickson, Philip Taylor.</t>
-	</appendix>
+	</section>
 	
 	<!-- !Further Suggestions -->
-	<appendix title="Further Suggestions" anchor="further-suggestions">
+	<section title="Further Suggestions" anchor="further-suggestions">
 		<t>This section is informative.</t>
 		
 		<t>While the scope of this specification is only parsing of HTTP
@@ -357,19 +370,6 @@
 			  cannot change the header, or because the file extension/MIME type
 			  database is outdated.</t>
 		</list></t>
-	</appendix>
-</middle>
-<back>
-	<!-- !Normative References -->
-	<references title="Normative References">
-		&ASCII;
-		&RFC2119;
-		&RFC2616;
-	</references>
-	
-	<!-- !Informative References -->
-	<references title="Informative References">
-		&HTML5;
-	</references>
+	</section>
 </back>
 </rfc>
