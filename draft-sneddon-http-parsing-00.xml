@@ -4,6 +4,7 @@
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY RFC2616 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2616.xml">
 <!ENTITY ASCII SYSTEM "http://xml.resource.org/public/rfc/bibxml2/reference.ANSI.X3-4.1986.xml">
+<!ENTITY HTML5 SYSTEM "http://xml.resource.org/public/rfc/bibxml4/reference.W3C.WD-html5-20080122.xml">
 <!ENTITY % rfc2629-xhtml PUBLIC "-//IETF//ENTITIES XHTML subset for RFC 2629//EN" "http://xml.resource.org/authoring/rfc2629-xhtml.ent">
 <!ENTITY % rfc2629-other PUBLIC "-//IETF//ENTITIES Other for RFC 2629//EN" "http://xml.resource.org/authoring/rfc2629-other.ent">
 %rfc2629-xhtml;
@@ -349,7 +350,7 @@
 			  number of websites.</t>
 			
 			<t>The Content-Type SHOULD NOT on its own be trusted. Content-Type
-			  sniffing as defined in <xref target="HTML 5"/>
+			  sniffing as defined in <xref target="W3C.WD-html5-20080122"/>
 			  SHOULD be used to determine the true type of the resource. This
 			  is due to a large number of websites sending incorrect
 			  Content-Type headers, often because the maintainer of the website
@@ -368,18 +369,7 @@
 	
 	<!-- !Informative References -->
 	<references title="Informative References">
-		<reference anchor="HTML 5"  target="http://www.whatwg.org/specs/web-apps/current-work/">
-			<front>
-				<title>HTML 5</title>
-				<author initials="I." surname="Hickson" fullname="Ian Hickson" role="editor">
-					<organization>Google</organization>
-					<address>
-						<email>ian@hixie.ch</email>
-					</address>
-				</author>
-			</front>
-			<format type="HTML" target="http://www.whatwg.org/specs/web-apps/current-work/"/>
-		</reference>
+		&HTML5;
 	</references>
 </back>
 </rfc>
