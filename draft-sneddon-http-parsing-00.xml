@@ -168,11 +168,11 @@
 		  types of errors.</t>
 		
 		<section title="Fatal Error" anchor="fatal-error">
-			<t>If a request being parsed, the server/proxy MUST respond with 400
-			  (Bad Request); if a response being parsed, the client MUST notify
-			  the user of the error (e.g., by displaying a graphical error
-			  message, by sounding an audible warning, by logging the error in
-			  an error log).</t>
+			<t>If a request being parsed, the server MUST respond with 400 (Bad
+			  Request); if a response being parsed, the client MUST notify the
+			  user of the error (e.g., by displaying a graphical error message,
+			  by sounding an audible warning, by logging the error in an error
+			  log).</t>
 		</section>
 	</section>
 	
