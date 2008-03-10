@@ -19,7 +19,7 @@
 <?rfc comments="yes"?>
 <?rfc strict="yes"?>
 <?rfc inline="yes"?>
-<rfc ipr="full3978" category="info" updates="2616">
+<rfc ipr="noDerivatives3978" category="info" updates="2616">
 <front>
 	<title>Tolerant HTTP Parsing</title>
 	<author initials="G.M." surname="Sneddon" fullname="Geoffrey Sneddon">
@@ -162,116 +162,31 @@
 		</section>
 	</section>
 	
-	<!-- !Parsing -->
-	<section title="Parsing">
-		<!-- !Common Subroutines -->
-		<section title="Common Subroutines">
-			<!-- !Collect Bytes That Are In The Group -->
-			<section title="Collect Bytes That Are In The Group" anchor="collect-bytes-that-are">
-				<t>When an algorithm requires the parser to "collect bytes", the
-				  following algorithm MUST be run, with "bytes" being the set of
-				  bytes that can be collected:</t>
-				
-				<t><list style="numbers">
-					<t>Let "input" and "position" be the same variables as those
-					  of the same name in the algorithm that invoked these
-					  steps.</t>
-					
-					<t>Let "result" be an empty string.</t>
-					
-					<t>While "position" doesn't point past the end of "input"
-					  and the byte at position is one of the "bytes", append
-					  that byte to the end of "result" and advance "position" to
-					  the next byte in "input".</t>
-					
-					<t>Return "result".</t>
-				</list></t>
-			</section>
-			
-			<!-- !Collect Bytes That Aren't In The Group -->
-			<section title="Collect Bytes That Aren't In The Group" anchor="collect-bytes-that-arent">
-				<t>When an algorithm requires the parser to "collect bytes that
-				  aren't", the following algorithm MUST be run, with "bytes"
-				  being the set of bytes that cannot be collected:</t>
-				
-				<t><list style="numbers">
-					<t>Let "input" and "position" be the same variables as those
-					  of the same name in the algorithm that invoked these
-					  steps.</t>
-					
-					<t>Let "result" be an empty string.</t>
-					
-					<t>While "position" doesn't point past the end of "input"
-					  and the byte at position is not one of the "bytes", append
-					  that byte to the end of "result" and advance "position" to
-					  the next byte in "input".</t>
-					
-					<t>Return "result".</t>
-				</list></t>
-			</section>
-			
-			<!-- !Skip Inline Whitespace -->
-			<section title="Skip Inline Whitespace" anchor="skip-inline-whitespace">
-				<t>When an algorithm requires the parser to "skip inline
-				  whitespace", the parser MUST <xref target="collect-bytes-that-are">
-				  collect bytes that are</xref> either 0x09 (US-ASCII horizontal
-				  tab) or 0x20 (US-ASCII space).</t>
-			</section>
-			
-			<!-- !Is Linear Whitespace -->
-			<section title="Is Linear Whitespace" anchor="is-linear-whitespace">
-				<t>When an algorithm requires the parser to see if the following
-				  byte "is linear whitespace", the following algorithm MUST be
-				  run:</t>
-				
-				<t><list style="numbers">
-					<t>Let "input" and "position" be the same variables as those
-					  of the same name in the algorithm that invoked these
-					  steps.</t>
-					
-					<t>If "position" points to 0x09 (US-ASCII horizontal tab),
-					  then return true, otherwise proceed to the next step.</t>
-					
-					<t>If "position" points to 0x20 (US-ASCII space), then
-					  return true, otherwise proceed to the next step.</t>
-					
-					<t>If "position" points to 0x0D (US-ASCII character return),
-					  then return true, otherwise proceed to the next step.</t>
-					  
-					<t>If "position" points to 0x0A (US-ASCII line feed), and is
-					  followed by either 0x09 (US-ASCII horizontal tab) or 0x20
-					  (US-ASCII space), then return true, otherwise proceed to
-					  the next step.</t>
-					
-					<t>The next byte is not linear whitespace. Return false.</t>
-				</list></t>
-			</section>
-			
-			<!-- !Parse Linear Whitespace -->
-			<section title="Parse Linear Whitespace">
-				<t>When an algorithm requires the parser to "parse linear
-				  whitespace", the following algorithm MUST be run:</t>
-				
-				<t><list style="numbers">
-					<t>Let "input", "position", and "value" be the same
-					  variables as those of the same name in the algorithm that
-					  invoked these steps.</t>
-					
-					<t>If the following byte <xref target="is-linear-whitespace">
-					  is linear whitespace</xref> then advance "position" to the
-					  next byte in "input" before repeating this step.</t>
-					
-					<t>Append a single 0x20 (US-ASCII space) byte to the end of
-					  "value".</t>
-				</list></t>
-			</section>
+	<!-- !Errors -->
+	<section title="Errors">
+		<t>This section describes the behaviour that MUST be taken on certain
+		  types of errors.</t>
+		
+		<section title="Fatal Error" anchor="fatal-error">
+			<t>If it is a request being parsed, the server/proxy MUST respond
+			  with 400 (Bad Request); if it is a response being parsed, the
+			  client MUST notify the user of the error (e.g., by displaying a
+			  graphical error message, by sounding an audible warning, by
+			  logging the error in an error log).</t>
 		</section>
 	</section>
 	
-	<!-- !Post Parsing -->
-	<section title="Post Parsing">
-		<t>This section details how certain headers should be treated after
-		  parsing.</t>
+	<!-- !Tokenisation -->
+	<section title="Tokenisation">
+		<t>An HTTP request/response MUST be broken up into header-fields and
+		  message-body following the request production for requests, and the
+		  response production for responses. If the appropriate production fails
+		  to match, it is a <xref target="fatal-error">fatal error</xref>.</t>
+	</section>
+	
+	<!-- !Parsing -->
+	<section title="Parsing">
+		<t>This section details the processing follows that tokenising.</t>
 		
 		<!-- !Unescaping Quoted Strings -->
 		<section title="Unescaping Quoted Strings" anchor="unescaping-quoted-strings">
