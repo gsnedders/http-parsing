@@ -19,7 +19,7 @@
 <?rfc comments="yes"?>
 <?rfc strict="yes"?>
 <?rfc inline="yes"?>
-<rfc ipr="noDerivatives3978" category="info" updates="2616">
+<rfc ipr="noDerivatives3978" category="info" updates="2109 2616 2965">
 <front>
 	<title>Tolerant HTTP Parsing</title>
 	<author initials="G.M." surname="Sneddon" fullname="Geoffrey Sneddon">
@@ -168,11 +168,11 @@
 		  types of errors.</t>
 		
 		<section title="Fatal Error" anchor="fatal-error">
-			<t>If it is a request being parsed, the server/proxy MUST respond
-			  with 400 (Bad Request); if it is a response being parsed, the
-			  client MUST notify the user of the error (e.g., by displaying a
-			  graphical error message, by sounding an audible warning, by
-			  logging the error in an error log).</t>
+			<t>If a request being parsed, the server/proxy MUST respond with 400
+			  (Bad Request); if a response being parsed, the client MUST notify
+			  the user of the error (e.g., by displaying a graphical error
+			  message, by sounding an audible warning, by logging the error in
+			  an error log).</t>
 		</section>
 	</section>
 	
