@@ -179,9 +179,9 @@
 	<!-- !Tokenisation -->
 	<section title="Tokenisation">
 		<t>An HTTP request/response MUST be broken up into header-fields and
-		  message-body following the request production for requests, and the
-		  response production for responses. If the appropriate production fails
-		  to match, it is a <xref target="fatal-error">fatal error</xref>.</t>
+		  message-body following the request rule for requests, and the
+		  response rule for responses. If the appropriate rule fails to match,
+		  it is a <xref target="fatal-error">fatal error</xref>.</t>
 	</section>
 	
 	<!-- !Parsing -->
