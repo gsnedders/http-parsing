@@ -20,7 +20,7 @@
 <?rfc comments="yes"?>
 <?rfc strict="yes"?>
 <?rfc inline="yes"?>
-<rfc ipr="noDerivatives3978" category="info" updates="2109 2616 2965">
+<rfc ipr="noDerivatives3978" category="info" updates="2109,2616,2965">
 <front>
 	<title>Tolerant HTTP Parsing</title>
 	<author initials="G.M." surname="Sneddon" fullname="Geoffrey Sneddon">
