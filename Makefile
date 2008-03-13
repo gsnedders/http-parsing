@@ -19,7 +19,7 @@ ALL_OUTPUTS=http-parsing.html http-parsing.txt
 
 html: http-parsing.html
 txt: http-parsing.txt
-all: $(ALL_OUTPUTS) validate
+all: $(ALL_OUTPUTS)
 
 # Clean
 .PHONY: clean
