@@ -3,13 +3,13 @@ commit: validate
 	hg commit
 
 validate:
-	xmllint --valid --noout draft-sneddon-http-parsing-00.xml
+	xmllint --valid --noout http-parsing.xml
 
 show-parsed:
-	xmllint draft-sneddon-http-parsing-00.xml
+	xmllint http-parsing.xml
 
 # Output
-ALL_OUTPUTS=draft-sneddon-http-parsing-00.html draft-sneddon-http-parsing-00.txt
+ALL_OUTPUTS=http-parsing.html http-parsing.txt
 
 %.html: %.xml
 	xml2rfc $< $@
@@ -17,8 +17,8 @@ ALL_OUTPUTS=draft-sneddon-http-parsing-00.html draft-sneddon-http-parsing-00.txt
 %.txt: %.xml
 	xml2rfc $< $@
 
-html: draft-sneddon-http-parsing-00.html
-txt: draft-sneddon-http-parsing-00.txt
+html: http-parsing.html
+txt: http-parsing.txt
 all: $(ALL_OUTPUTS) validate
 
 # Clean
