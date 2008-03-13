@@ -1,4 +1,7 @@
 # Utilities
+commit: validate
+	hg commit
+
 validate:
 	xmllint --valid --noout draft-sneddon-http-parsing-00.xml
 
