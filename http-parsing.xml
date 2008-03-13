@@ -287,11 +287,9 @@ quoted-pair    = "\" CHAR
 		&HTML5;
 	</references>
 	
-	<!-- !Contributors -->
-	<section title="Contributors">
-		<t>The following people contributed to this document (often by helping
-		  to reverse engineer current behaviour, or helping to review this
-		  document): Ian Hickson, Philip Taylor.</t>
+	<!-- !Acknowledgments -->
+	<section title="Acknowledgments">
+		<t>Thanks to: Ian Hickson, Philip Taylor.</t>
 	</section>
 	
 	<!-- !Further Suggestions -->
