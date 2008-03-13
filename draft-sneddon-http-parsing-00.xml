@@ -138,13 +138,41 @@
 			<t>This specification is defined in terms of the US-ASCII character
 			  set, as defined in <xref target="ANSI.X3-4.1986"/>.</t>
 			
-			<t>This specification is defined in terms of ABNF, as described in
-			  <xref target="RFC5234"/>.</t>
-			
 			<t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL",
 			  "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and
 			  "OPTIONAL" in this document are to be interpreted as described in
 			  <xref target="RFC2119"/>.</t>
+			
+			<t>This specification is defined in terms of ABNF, as described in
+			  <xref target="RFC5234"/>.</t>
+			
+			<!-- !Basic ABNF Rules -->
+			<section title="Basic ABNF Rules">
+			  <figure>
+			  	<preamble>Rules inherited from <xref target="RFC2616"/>
+			  	  converted to <xref target="RFC5234"/> ABNF:</preamble>
+			  	<artwork><![CDATA[
+lws            = [CRLF] 1*( SP / HTAB )
+
+separators     = "(" / ")" / "<" / ">" / "@" / "," / ";" / ":" / "\"
+                 / DQUOTE / "/" / "[" / "]" / "?" / "=" / "{" / "}"
+                 / SP / HTAB
+
+token          = 1*( "!" / "#" / "$" / "%" / "&" / "'" / "*" / "+"
+               / "-" / "." / "^" / "_" / "`" / "|" / "~" / DIGIT /
+               ALPHA )
+
+comment        = "(" *( ctext / quoted-pair / comment ) ")"
+ctext          = %x21-27 / %x2A-7E / %x80-FF / lws
+
+quoted-string  = ( DQUOTE *( qdtext / quoted-pair ) DQUOTE )
+qdtext          = %x21 / %x23-5B / %x5D-7E / %x80-FF / lws
+
+quoted-pair    = "\" CHAR
+					]]></artwork>
+				</figure>
+			</section>
+			
 		</section>
 		
 		<!-- !Terminology -->
