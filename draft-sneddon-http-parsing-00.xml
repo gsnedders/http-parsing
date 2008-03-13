@@ -147,6 +147,11 @@
 			  <xref target="RFC2119"/>.</t>
 		</section>
 		
+		<!-- !Terminology -->
+		<section title="Terminology">
+			<t>Terminology is as in <xref target="RFC2616"/> Section 1.3.</t>
+		</section>
+		
 		<!-- !Conformance Requirements -->
 		<section title="Conformance Requirements">
 			<t>The conformance requirements of this specification are phrased as
