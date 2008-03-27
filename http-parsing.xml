@@ -176,13 +176,22 @@ quoted-pair    = "\" CHAR
 		<!-- !Terminology -->
 		<section title="Terminology">
 			<t>Terminology is as in <xref target="RFC2616"/> Section 1.3, with
-			  the following additions:
-			  
-			  <list style="hanging">
-			      <t hangText="interactive user agent:">This is a subset of user
-			        agents, which directly return the result to the same user
-			        that made the request (e.g., web browsers).</t>
-			  </list>
+			  the following additions:</t>
+			
+			<t>interactive user agent
+				<list>
+				    <t>This is a type of user agent, which directly returns the
+				      result to the same user that made the request (e.g., web
+				      browsers).</t>
+				</list>
+			</t>
+			
+			<t>non-interactive user agent
+				<list>
+					<t>This is a type of user agents, which don't return the
+					  result of the request to the user that made the request
+					  (e.g., search engine spiders).</t>
+				</list>
 			</t>
 		</section>
 		
