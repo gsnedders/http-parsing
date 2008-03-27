@@ -86,8 +86,6 @@
 			<t>Break parsing/post-parsing into two distinct sections, and have
 			  common subroutines seperated out.</t>
 			
-			<t>Split up acknowledgements and contributors.</t>
-			
 			<t>Show effective valid header name/values as POSIX regex (as this
 			  has a formal specification and is therefore most appropriate for
 			  an I-D/RFC <eref target="http://www.ietf.org/IESG/STATEMENTS/pseudo-code-in-specs.txt"/>).
@@ -177,7 +175,15 @@ quoted-pair    = "\" CHAR
 		
 		<!-- !Terminology -->
 		<section title="Terminology">
-			<t>Terminology is as in <xref target="RFC2616"/> Section 1.3.</t>
+			<t>Terminology is as in <xref target="RFC2616"/> Section 1.3, with
+			  the following additions:
+			  
+			  <list style="hanging">
+			      <t hangText="interactive user agent:">This is a subset of user
+			        agents, which directly return the result to the same user
+			        that made the request (e.g., web browsers).</t>
+			  </list>
+			</t>
 		</section>
 		
 		<!-- !Conformance Requirements -->
