@@ -17,7 +17,7 @@ DATA FORMAT
 INTRODUCTION
 ------------
 
-This describes an XML format for storing data relating to HTTP headers.
+This describes an XML format for storing surveys relating to HTTP headers.
 
 
 Notational Conventions
@@ -32,7 +32,7 @@ targets.
 Documents
 ---------
 
-This format is described in terms of [XML1.0]. Documents MUST be valid according
+This format is described in terms of [XML10]. Documents MUST be valid according
 to the DOCTYPE given in the appendix of this document. The order of elements in
 the document is irrelevant, and any parsers MUST NOT assign any meaning
 dependant on the order.
@@ -50,5 +50,40 @@ THE "processed" ELEMENT
 -----------------------
 
 The "processed" element represents the start of a IRI [RFC3987] being processed.
-The IRI is specified by the "uri" attribute. The "uri" attribute MUST match the
-"IRI" specification in [RFC3987]. The element MUST have no content.
+The IRI MUST be specified by the "uri" attribute. The "uri" attribute MUST match
+the "IRI" specification in [RFC3987]. The element MUST have no content.
+
+
+THE "redirect" ELEMENT
+----------------------
+
+The "redirect" element represents a redirect. This MUST be a redirect caused by
+a 3xx HTTP status code. It MAY merge multiple redirects into one element (e.g.,
+a 301 followed by a 307 may be a single redirect). The original URI MUST be
+specified by the "uri" attribute. The URI it is redirected to MUST be specified
+by the "destination" attribute. Both the "uri" and the "destination" attribute
+MUST match the "IRI" specification in [RFC3987]. The element MUST have no
+content.
+
+
+THE "header" ELEMENT
+--------------------
+
+The "header" element represents an HTTP header. The "uri" attribute MUST be the
+IRI that the header came from, and MUST match the "IRI" specification in
+[RFC3987]. The "name" attribute MUST specify the field-name of the header. The
+"value" attribute MUST specify the field-value of the header.
+
+
+THE "error" ELEMENT
+-------------------
+
+The "error" element represents an error message. The "uri" attribute MUST be the
+IRI that the error occurred while trying to fetch/parse. The "type" attribute
+MUST case-sensitively match "io" if the error occurred at the I/O level; it
+MUST case-sensitively match "http" if the request resulted in an HTTP error;
+otherwise, it MUST case-sensitively match "other". There MAY be a "code"
+attribute except if the "type" attribute is case-sensitively equal to "http"
+in which case it MUST be present and MUST equal the status code of the response.
+There MAY be a "message" attribute providing human-readable information about
+the error.
