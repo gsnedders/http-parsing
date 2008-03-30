@@ -1,3 +1,3 @@
-^draft-sneddon-http-parsing-[0-9][0-9].txt$
-^draft-sneddon-http-parsing-[0-9][0-9].html$
+^draft-sneddon-http-parsing-[0-9][0-9].(txt|html)$
+^http-parsing.(txt|html)$
 .pyc$

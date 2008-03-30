@@ -1,0 +1,23 @@
+<!ELEMENT survey (processed | redirect | header | error)*>
+
+<!ELEMENT processed EMPTY>
+<!ATTLIST processed
+	uri	CDATA	#REQUIRED>
+
+<!ELEMENT redirect EMPTY>
+<!ATTLIST redirect
+	uri	CDATA	#REQUIRED
+	destination	CDATA	#REQUIRED>
+
+<!ELEMENT header EMPTY>
+<!ATTLIST header
+	uri	CDATA	#REQUIRED
+	name	CDATA	#REQUIRED
+	value	CDATA	#REQUIRED>
+
+<!ELEMENT error EMPTY>
+<!ATTLIST error
+	uri	CDATA	#REQUIRED
+	type	(io|http|other)	#REQUIRED
+	message	CDATA	#IMPLIED
+	code	CDATA	#IMPLIED>
