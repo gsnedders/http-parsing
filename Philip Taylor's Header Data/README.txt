@@ -92,9 +92,16 @@ the error.
 REFERENCES
 ----------
 
-[RFC2119]: Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels", BCP 14, RFC 2119, March 1997.
-[RFC3987]: Duerst, M. and M. Suignard, "Internationalized Resource Identifiers (IRIs)", RFC 3987, January 2005.
-[XML10]: Bray, T., Paoli, J., Sperberg-McQueen, C.M., Maler, E., and F. Yergeau, "Extensible Markup Language (XML) 1.0 (Fourth Edition)", World Wide Web Consortium Recommendation REC-xml, August 2006, <http://www.w3.org/TR/2006/REC-xml-20060816/>.
+[RFC2119]	Bradner, S., "Key words for use in RFCs to Indicate Requirement
+			Levels", BCP 14, RFC 2119, March 1997.
+
+[RFC3987]	Duerst, M. and M. Suignard, "Internationalized Resource Identifiers
+			(IRIs)", RFC 3987, January 2005.
+
+[XML10]		Bray, T., Paoli, J., Sperberg-McQueen, C.M., Maler, E., and F.
+			Yergeau, "Extensible Markup Language (XML) 1.0 (Fourth Edition)",
+			World Wide Web Consortium Recommendation REC-xml, August 2006,
+			<http://www.w3.org/TR/2006/REC-xml-20060816/>.
 
 
 APPENDIX A: DOCTYPE
