@@ -35,7 +35,7 @@ Documents
 This format is described in terms of [XML10]. Documents MUST be valid according
 to the DOCTYPE given in the appendix of this document. The order of elements in
 the document is irrelevant, and any parsers MUST NOT assign any meaning
-dependant on the order.
+dependant on the order. The data for a single URI MAY occur multiple times.
 
 THE "survey" ELEMENT
 --------------------
@@ -87,3 +87,40 @@ attribute except if the "type" attribute is case-sensitively equal to "http"
 in which case it MUST be present and MUST equal the status code of the response.
 There MAY be a "message" attribute providing human-readable information about
 the error.
+
+
+REFERENCES
+----------
+
+[RFC2119]: Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels", BCP 14, RFC 2119, March 1997.
+[RFC3987]: Duerst, M. and M. Suignard, "Internationalized Resource Identifiers (IRIs)", RFC 3987, January 2005.
+[XML10]: Bray, T., Paoli, J., Sperberg-McQueen, C.M., Maler, E., and F. Yergeau, "Extensible Markup Language (XML) 1.0 (Fourth Edition)", World Wide Web Consortium Recommendation REC-xml, August 2006, <http://www.w3.org/TR/2006/REC-xml-20060816/>.
+
+
+APPENDIX A: DOCTYPE
+-------------------
+
+<!ELEMENT survey (processed | redirect | header | error)*>
+
+<!ELEMENT processed EMPTY>
+<!ATTLIST processed
+	uri	CDATA	#REQUIRED>
+
+<!ELEMENT redirect EMPTY>
+<!ATTLIST redirect
+	uri	CDATA	#REQUIRED
+	destination	CDATA	#REQUIRED>
+
+<!ELEMENT header EMPTY>
+<!ATTLIST header
+	uri	CDATA	#REQUIRED
+	name	CDATA	#REQUIRED
+	value	CDATA	#REQUIRED>
+
+<!ELEMENT error EMPTY>
+<!ATTLIST error
+	uri	CDATA	#REQUIRED
+	type	(io|http|other)	#REQUIRED
+	message	CDATA	#IMPLIED
+	code	CDATA	#IMPLIED>
+	
