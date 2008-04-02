@@ -1,3 +1,4 @@
-^draft-sneddon-http-parsing-[0-9][0-9].(txt|html)$
-^http-parsing.(txt|html)$
-.pyc$
+^draft-sneddon-http-parsing-[0-9][0-9]\.(txt|html)$
+^http-parsing\.(txt|html)$
+\.pyc$
+^Philip\ Taylor\'s\ Header\ Data/headers.db
