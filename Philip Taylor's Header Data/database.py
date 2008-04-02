@@ -8,6 +8,24 @@ try:
 except ImportError:
 	import xml.etree.ElementTree as ElementTree
 
+# Regular expressions:
+# Basic rules
+lws =  r"(?:\r\n)?[\x09\x20]+"
+text = r"(?:[\x20-\xFF]|" + lws + ")"
+seperators = r"[()<>@,;:\\\"/[\]?={} \t]"
+token = r"[!#$%&'*+\-\.^_`|~0-9A-Za-z]+"
+qdtext = r"(?:[\x21\x23-\x5B\x5D-\x7E\x80-\xFF]|" + lws + ")"
+quotedPair = r"\\[\x00-\x7F]"
+quotedString = r'"(?:' + qdtext + '|' + quotedPair + ')*"'
+
+# Message header rules
+fieldName = token
+fieldValue = r"(?:(?:" + text + "*|(?:" + token + "|" + seperators + "|" + quotedString + ")*)|" + lws + ")*"
+
+# Compile anchored versions of what we need
+fieldNameCompiled = re.compile("^" + fieldName + "$")
+fieldValueCompiled = re.compile("^" + fieldValue + "$")
+
 class Database(object):
 	""" Class for interfacing with header database"""
 	
@@ -41,21 +59,8 @@ class Database(object):
 			self.conn.commit()
 	
 	def isValid(self, name, value):
-		"""Checks if a header is valid"""
-		# Basic rules
-		lws =  r"(?:\r\n)?[\x09\x20]+"
-		text = r"(?:[\x20-\xFF]|" + lws + ")"
-		seperators = r"[()<>@,;:\\\"/[\]?={} \t]"
-		token = r"[!#$%&'*+\-\.^_`|~0-9A-Za-z]+"
-		qdtext = r"(?:[\x21\x23-\x5B\x5D-\x7E\x80-\xFF]|" + lws + ")"
-		quotedPair = r"\\[\x00-\x7F]"
-		quotedString = r'"(?:' + qdtext + '|' + quotedPair + ')*"'
-		
-		# Message header rules
-		fieldName = token
-		fieldValue = r"(?:(?:" + text + "*|(?:" + token + "|" + seperators + "|" + quotedString + ")*)|" + lws + ")*"
-		
-		if not re.match("^" + fieldName + "$", name) or not re.match("^" + fieldValue + "$", value):
+		"""Checks if a header is valid"""		
+		if not fieldNameCompiled.search(name) or not fieldValueCompiled.search(value):
 			return False
 		else:
 			return False
