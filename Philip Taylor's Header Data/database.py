@@ -10,17 +10,83 @@ except ImportError:
 
 # Regular expressions:
 # Basic rules
-lws =  r"(?:\r\n)?[\x09\x20]+"
-text = r"(?:[\x20-\xFF]|" + lws + ")"
-seperators = r"[()<>@,;:\\\"/[\]?={} \t]"
+OCTET = r"[\x00-\xFF]"
+CHAR = r"[\x00-\x7F]"
+UPALPHA = r"[A-Z]"
+LOALPHA = r"[a-z]"
+ALPHA = r"(?:" + UPALPHA + "|" + LOALPHA + ")"
+DIGIT = r"[0-9]"
+CTL = r"[\x00-\x19\x7F]"
+CR = r"\x0D"
+LF = r"\x0A"
+SP = r"\x20"
+HT = r"\x09"
+DQUOTE = r"\x22"
+CRLF = CR + LF
+LWS =  r"(?:" + CRLF + ")?[" + SP + HT + "]+"
+TEXT = r"(?:[\x20-\xFF]|" + LWS + ")"
+HEX = r"[A-Fa-f" + DIGIT + "]"
+seperators = r"[()<>@,;:\\\"/[\]?={}" + SP + HT + "]"
 token = r"[!#$%&'*+\-\.^_`|~0-9A-Za-z]+"
-qdtext = r"(?:[\x21\x23-\x5B\x5D-\x7E\x80-\xFF]|" + lws + ")"
-quotedPair = r"\\[\x00-\x7F]"
+qdtext = r"(?:[\x21\x23-\x5B\x5D-\x7E\x80-\xFF]|" + LWS + ")"
+quotedPair = r"\\" + CHAR
 quotedString = r'"(?:' + qdtext + '|' + quotedPair + ')*"'
+ctext = r"(?:[\x20-\x27\x30-\xFF]|" + LWS + ")"
+comment = r"\((?:" + ctext + "|" + quotedPair + ")*\)"
+
+# HTTP Version
+HTTPVersion = r"HTTP/[1-9]+" + DIGIT + "*\.[1-9]+" + DIGIT + "*"
+
+# Uniform Resource Identifiers
+# Alias of what we already have
+alpha = ALPHA
+loalpha = LOALPHA
+upalpha = UPALPHA
+digit = DIGIT
+hex = HEX
+
+# Start the real building
+alphanum = r"(?:" + alpha + "|" + digit + ")"
+escaped = r"%" + hex + hex
+mark = r"[\-_.!~*'()]"
+unreserved = r"(?:" + alphanum + "|" + mark + ")"
+reserved = r"[;/?:@&=+$,]"
+uric = r"(?:" + reserved + "|" + unreserved + "|" + escaped + ")"
+fragment = uric + "*"
+query = uric + "*"
+pchar = r"(?:" + unreserved + "|" + escaped + "|[:@&=+$,])"
+param = pchar + "*"
+segment = pchar + "*(?:;" + param + ")*"
+path_segments = segment + "(?:/" + segment + ")*"
+port = digit + "*"
+IPv4address = digit + "+\." + digit + "+\." + digit + "+\." + digit + "+"
+toplabel = "(?:" + alpha + "|" + alpha + "(?:" + alphanum + "|-)*" + alphanum + ")"
+domainlabel = "(?:" + alphanum + "|" + alphanum + "(?:" + alphanum + "|-)*" + alphanum + ")"
+hostname = "(?:" + domainlabel + ".)*" + toplabel + "\.?"
+host = "(?:" + hostname + "|" + IPv4address + ")"
+hostport = host + "(?::" + port + ")?"
+userinfo = "(?:" + unreserved + "|" + escaped + "|[;:&=+$,])*"
+server = "(?:(?:" + userinfo + "@)?" + hostport + ")?"
+reg_name = "(?:" + unreserved + "|" + escaped + "|[$,;:@&=+])+"
+authority = "(?:" + server + "|" + reg_name + ")"
+scheme = alpha + "(?:" + alpha + "|" + digit + "|[+\-.])*"
+rel_segment = "(?:" + unreserved + "|" + escaped + "|[;@&=+$,])+"
+abs_path = "/" + path_segments
+rel_path = rel_segment + "(?:" + abs_path + ")?"
+net_path = "//" + authority + "(?:" + abs_path + ")?"
+uric_no_slash = "(?:" + unreserved + "|" + escaped + "|[;?:@&=+$,])"
+opaque_part = uric_no_slash + uric + "*"
+hier_part = "(?:" + net_path + "|" + abs_path + ")(?:\?" + query + ")?"
+relativeURI = "(?:" + net_path + "|" + abs_path + "|" + rel_path + ")(?:\?" + query + ")?"
+absoluteURI = scheme + ":(?:" + hier_part + "|" + opaque_part + ")"
+URIreference = "(?:" + absoluteURI + "|" + relativeURI + ")?(?:#" + fragment + ")?"
+
+# HTTP URL
+httpURL = "http://" + host + "(?::" + port + ")?(?:" + abs_path + "(?:\?" + query + ")?)?"
 
 # Message header rules
 fieldName = token
-fieldValue = r"(?:(?:" + text + "*|(?:" + token + "|" + seperators + "|" + quotedString + ")*)|" + lws + ")*"
+fieldValue = r"(?:" + TEXT + "|" + quotedString + "|" + LWS + ")*"
 
 # Compile anchored versions of what we need
 fieldNameCompiled = re.compile("^" + fieldName + "$")
