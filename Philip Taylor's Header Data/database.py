@@ -25,7 +25,7 @@ DQUOTE = r"\x22"
 CRLF = CR + LF
 LWS =  r"(?:" + CRLF + ")?[" + SP + HT + "]+"
 TEXT = r"(?:[\x20-\xFF]|" + LWS + ")"
-HEX = r"[A-Fa-f" + DIGIT + "]"
+HEX = r"[A-Fa-f0-9]"
 seperators = r"[()<>@,;:\\\"/[\]?={}" + SP + HT + "]"
 token = r"[!#$%&'*+\-\.^_`|~0-9A-Za-z]+"
 qdtext = r"(?:[\x21\x23-\x5B\x5D-\x7E\x80-\xFF]|" + LWS + ")"
@@ -83,6 +83,18 @@ URIreference = "(?:" + absoluteURI + "|" + relativeURI + ")?(?:#" + fragment + "
 
 # HTTP URL
 httpURL = "http://" + host + "(?::" + port + ")?(?:" + abs_path + "(?:\?" + query + ")?)?"
+
+# Full Date
+wkday = r"(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)"
+weekday = r"(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)"
+month = r"(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"
+time = DIGIT + "{2}:" + DIGIT + "{2}:" + DIGIT + "{2}"
+date1 = DIGIT + "{2}" + SP + month + SP + DIGIT + "{4}"
+date2 = DIGIT + "{2}-" + month + "-" + DIGIT + "{2}"
+date3 = month + SP + "(?:" + DIGIT + "{2}|" + SP + DIGIT + ")"
+rfc1123Date = wkday + "," + SP + date1 + SP + time + SP + "GMT"
+rfc850Date = weekday + "," + SP + date2 + SP + time + SP + "GMT"
+asctimeDate = wkday + SP + date3 + SP + time + SP + DIGIT + "{4}"
 
 # Message header rules
 fieldName = token
