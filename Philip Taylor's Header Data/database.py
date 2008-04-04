@@ -95,6 +95,7 @@ date3 = month + SP + "(?:" + DIGIT + "{2}|" + SP + DIGIT + ")"
 rfc1123Date = wkday + "," + SP + date1 + SP + time + SP + "GMT"
 rfc850Date = weekday + "," + SP + date2 + SP + time + SP + "GMT"
 asctimeDate = wkday + SP + date3 + SP + time + SP + DIGIT + "{4}"
+HTTPdate = "(?:" + rfc1123Date + "|" + rfc850Date + "|" + asctimeDate + ")"
 
 # Message header rules
 fieldName = token
