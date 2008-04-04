@@ -23,16 +23,19 @@ SP = r"\x20"
 HT = r"\x09"
 DQUOTE = r"\x22"
 CRLF = CR + LF
-LWS =  r"(?:" + CRLF + ")?[" + SP + HT + "]+"
+LWS =  r"(?:(?:" + CRLF + ")?[" + SP + HT + "]+)"
 TEXT = r"(?:[\x20-\xFF]|" + LWS + ")"
 HEX = r"[A-Fa-f0-9]"
 seperators = r"[()<>@,;:\\\"/[\]?={}" + SP + HT + "]"
 token = r"[!#$%&'*+\-\.^_`|~0-9A-Za-z]+"
 qdtext = r"(?:[\x21\x23-\x5B\x5D-\x7E\x80-\xFF]|" + LWS + ")"
-quotedPair = r"\\" + CHAR
+quotedPair = r"(?:\\" + CHAR + ")"
 quotedString = r'"(?:' + qdtext + '|' + quotedPair + ')*"'
 ctext = r"(?:[\x20-\x27\x30-\xFF]|" + LWS + ")"
 comment = r"\((?:" + ctext + "|" + quotedPair + ")*\)"
+
+# Implicit LWS
+implicitLWS = LWS + "*"
 
 # HTTP Version
 HTTPVersion = r"HTTP/[1-9]+" + DIGIT + "*\.[1-9]+" + DIGIT + "*"
@@ -97,16 +100,72 @@ rfc850Date = weekday + "," + SP + date2 + SP + time + SP + "GMT"
 asctimeDate = wkday + SP + date3 + SP + time + SP + DIGIT + "{4}"
 HTTPdate = "(?:" + rfc1123Date + "|" + rfc850Date + "|" + asctimeDate + ")"
 
+# Delta seconds
+deltaSeconds = DIGIT + "+"
+
+# Character sets
+charset = token
+
+# Content coding
+contentCoding = token
+
+# Transfer coding
+attribute = token
+value = "(?:" + token + "|"+ quotedString + ")"
+parameter = attribute + "=" + value
+transferExtension = token + "(?:;" + parameter + ")*"
+transferCoding = "(?:[Cc][Hh][Uu][Nn][Kk][Ee][Dd]|" + transferExtension + ")"
+
+# Media type
+type = token
+subtype = token
+mediaType = type + "/" + subtype + "(?:;" + parameter + ")*"
+
+# Product token
+productVersion = token
+product = token + "(?:/" + productVersion + ")?"
+
+# Quality value
+qvalue = r"(?:0(?:\." + DIGIT + "{0,3})?|1(?:\.0{0,3})?)"
+
+# Language tags
+primaryTag = ALPHA + "{1,8}"
+subtag = ALPHA + "{1,8}"
+languageTag = primaryTag + "(?:" + subtag + ")*"
+
+# Entity tags
+weak = r"[Ww]/"
+opaqueTag = quotedString
+entityTag = "(?:" + weak + ")?" + opaqueTag
+
+# Range units
+bytesUnit = "[Bb][Yy][Tt][Ee][Ss]"
+otherRangeUnit = token
+rangeUnit = "(?:" + bytesUnit + "|" + otherRangeUnit + ")"
+
 # Message header rules
 fieldName = token
 fieldValue = r"(?:" + TEXT + "|" + quotedString + "|" + LWS + ")*"
+
+# Accept header
+mediaRange = r"(?:(?:" + type + "|*)/*|" + type + "/" + subtype + ")(?:;" + parameter + ")*"
+acceptExtension = ";" + token + "(?:=(?:" + token + "|" + quotedString + "))?"
+acceptParams = ";q=" + qvalue + "(?:" + acceptExtension + ")*"
+accept = 
 
 # Compile anchored versions of what we need
 fieldNameCompiled = re.compile("^" + fieldName + "$")
 fieldValueCompiled = re.compile("^" + fieldValue + "$")
 
+# Dictionary of headers and their regular expressions
+headers = {"accept": acceptCompiled,}
+
 class Database(object):
 	""" Class for interfacing with header database"""
+	
+	self.unknown = -1
+	self.invalid = 0
+	self.valid = 1
 	
 	def __init__(self, db_conn):
 		""" Creates a Database object with a given DB Connection (that must
@@ -140,6 +199,11 @@ class Database(object):
 	def isValid(self, name, value):
 		"""Checks if a header is valid"""		
 		if not fieldNameCompiled.search(name) or not fieldValueCompiled.search(value):
-			return False
+			return self.invalid
+		elif name in headers:
+			if headers[name](value):
+				return self.valid
+			else:
+				return self.invalid
 		else:
-			return False
+			return self.unknown
