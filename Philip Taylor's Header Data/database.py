@@ -50,12 +50,12 @@ hex = HEX
 
 # Start the real building
 alphanum = r"(?:" + alpha + "|" + digit + ")"
-escaped = r"%" + hex + hex
+escaped = r"(?:%" + hex + hex + ")"
 mark = r"[\-_.!~*'()]"
 unreserved = r"(?:" + alphanum + "|" + mark + ")"
 reserved = r"[;/?:@&=+$,]"
 uric = r"(?:" + reserved + "|" + unreserved + "|" + escaped + ")"
-fragment = uric + "*"
+fragment = "(?:" + uric + "*)"
 query = uric + "*"
 pchar = r"(?:" + unreserved + "|" + escaped + "|[:@&=+$,])"
 param = pchar + "*"
@@ -151,21 +151,21 @@ fieldValue = r"(?:" + TEXT + "|" + quotedString + "|" + LWS + ")*"
 mediaRange = r"(?:(?:" + type + "|*)/*|" + type + "/" + subtype + ")(?:;" + parameter + ")*"
 acceptExtension = ";" + token + "(?:=(?:" + token + "|" + quotedString + "))?"
 acceptParams = ";q=" + qvalue + "(?:" + acceptExtension + ")*"
-accept = 
+#accept = 
 
 # Compile anchored versions of what we need
 fieldNameCompiled = re.compile("^" + fieldName + "$")
 fieldValueCompiled = re.compile("^" + fieldValue + "$")
 
 # Dictionary of headers and their regular expressions
-headers = {"accept": acceptCompiled,}
+headers = {}
 
 class Database(object):
 	""" Class for interfacing with header database"""
 	
-	self.unknown = -1
-	self.invalid = 0
-	self.valid = 1
+	unknown = -1
+	invalid = 0
+	valid = 1
 	
 	def __init__(self, db_conn):
 		""" Creates a Database object with a given DB Connection (that must
