@@ -3,6 +3,7 @@
 	"http://xml.resource.org/authoring/rfc2629.dtd" [
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY RFC2616 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2616.xml">
+<!ENTITY RFC3986 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3986.xml">
 <!ENTITY RFC5234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5234.xml">
 <!ENTITY ASCII SYSTEM "http://xml.resource.org/public/rfc/bibxml2/reference.ANSI.X3-4.1986.xml">
 <!ENTITY HTML5 SYSTEM "http://xml.resource.org/public/rfc/bibxml4/reference.W3C.WD-html5-20080122.xml">
@@ -169,6 +170,10 @@ qdtext          = %x21 / %x23-5B / %x5D-7E / %x80-FF / lws
 quoted-pair    = "\" CHAR
 					]]></artwork>
 				</figure>
+				
+				<t>As well as the above, this specification also inherits all
+				  the rules from <xref target="RFC3986"/>, which as they are
+				  given in ABNF are not repeated here.</t>
 			</section>
 			
 		</section>
@@ -229,6 +234,28 @@ quoted-pair    = "\" CHAR
 		  message-body following the request rule for requests, and the
 		  response rule for responses. If the appropriate rule fails to match,
 		  it is a <xref target="fatal-error">fatal error</xref>.</t>
+		
+		<section title="Shared Rules">
+			<figure>
+				<artwork><![CDATA[
+method         = token
+
+request-uri    = "*" / absolute-uri / path-absolute / authority
+
+http-version   = "HTTP/" 1*DIGIT "." 1*DIGIT
+				]]></artwork>
+			</figure>
+		</section>
+		
+		<section title="Requests">			
+		  <figure>
+			<artwork><![CDATA[
+request        = request-line *( header [CR] LF ) [CR] LF message-body
+
+request-line   = method SP request-uri SP http-version [CR] LF
+				]]></artwork>
+			</figure>
+		</section>
 	</section>
 	
 	<!-- !Parsing -->
@@ -294,6 +321,7 @@ quoted-pair    = "\" CHAR
 		&ASCII;
 		&RFC2119;
 		&RFC2616;
+		&RFC3986;
 		&RFC5234;
 	</references>
 	
