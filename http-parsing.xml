@@ -244,13 +244,14 @@ request-uri    = "*" / absolute-uri / path-absolute / authority
 
 http-version   = "HTTP" *lws "/" *lws 1*DIGIT *lws "." *lws 1*DIGIT
 
-header         = header-name *lws ":" *lws header-value *lws [CR] LF
-header-name    = 1*( %x00-08 / %x0B / %x0C / %x0E-1F / %x21-39 / %x3B-FF )
+header         = header-name *lws ":" *lws header-value *lws [ CR ] LF
+header-name    = 1*header-content-nc
 header-value   = header-content
                  [ *( header-content / lws ) header-content ]
-header-content = ( %x00-08 / %x0B / %x0C / %x0E-1F / %x21-FF )
+header-content = header-content-nc / ":"
+header-content-nc = ( %x00-08 / %x0B-0C / %x0E-1F / %x21-39 / %x3B-FF )
 
-invalid-header = *( header-content / lws ) [CR] LF
+invalid-header = 1*header-content-nc [ ":" ] [ CR ] LF
 				]]></artwork>
 			</figure>
 		</section>
@@ -258,10 +259,10 @@ invalid-header = *( header-content / lws ) [CR] LF
 		<section title="Requests">			
 		  <figure>
 			<artwork><![CDATA[
-request        = request-line *( header / invalid-header ) [CR] LF
+request        = request-line *( header / invalid-header ) [ CR ] LF
                  message-body
 
-request-line   = method SP request-uri SP http-version [CR] LF
+request-line   = method SP request-uri SP http-version [ CR ] LF
 				]]></artwork>
 			</figure>
 		</section>
