@@ -79,11 +79,7 @@
 					<t>Most are unchanged from <xref target="RFC2616"/>.</t>
 				</list>
 			</t>
-			
-			<t><xref target="unescaping-quoted-strings"/> needs to be rewritten,
-			  as it currently breaks on anything that contains a double
-			  quotation mark.</t>
-						
+									
 			<t>Define handling of various things, which should make <xref target="further-suggestions"/>
 			  obsolete. This means moving Content-Type sniffing into this spec,
 			  as part of parsing the Content-Type header, as well as defining
@@ -284,30 +280,20 @@ request-line      = method SP request-uri SP http-version [ CR ] LF
 			<t><list style="numbers">
 				<t>Let "input" be the string being parsed.</t>
 				
-				<t>Let "string" be the unescaped output string.</t>
+				<t>If "input" does not match the quoted-string rule, return
+				  "input"; otherwise:</t>
 				
-				<t>Let "position" be a pointer into input, initially pointing at
-				  the start of the string.</t>
+				<t>Let "string" be the unescaped output string, initially set to
+				  "input".</t>
 				
-				<t>If "input" has exactly two 0x22 (US-ASCII quotation mark)
-				  bytes, and they are the first and last bytes of the string,
-				  then continue with this algorithm. Otherwise, return "input",
-				  as the string does not need to be unescaped.</t>
+				<t>Remove the first and last bytes from "string" (these
+				  are the delimiting 0x22 (US-ASCII quotation mark) bytes).</t>
 				
-				<t>Advance "position" to the next byte.</t>
-				
-				<t>If "position" points to a 0x5C (US-ACSII backslash), skip to
-				  step 8, otherwise continue on to step 7.</t>
-				
-				<t>Append the current byte (that "position" points to) to
-				  "string".</t>
-				
-				<t>Advance "position" to the next byte.</t>
-				
-				<t>If "position" is not past the end of "input", return to step
-				  6 of this algorithm.</t>
-				
-				<t>Remove the final byte from "string".</t>
+				<t>Remove any 0x5C (US-ASCII backslash) bytes that are not
+				  preceded by another 0x5C byte from "string" (taking the
+				  initial state of the string, so that if the preceding byte is
+				  stripped itself (which it will be), the byte is still not
+				  stripped).</t>
 				
 				<t>Return "string".</t>
 			</list></t>
