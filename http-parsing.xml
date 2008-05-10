@@ -158,8 +158,8 @@ separators     = "(" / ")" / "<" / ">" / "@" / "," / ";" / ":" / "\"
                  / SP / HTAB
 
 token          = 1*( "!" / "#" / "$" / "%" / "&" / "'" / "*" / "+"
-               / "-" / "." / "^" / "_" / "`" / "|" / "~" / DIGIT /
-               ALPHA )
+                 / "-" / "." / "^" / "_" / "`" / "|" / "~" / DIGIT /
+                 ALPHA )
 
 comment        = "(" *( ctext / quoted-pair / comment ) ")"
 ctext          = %x21-27 / %x2A-7E / %x80-FF / lws
