@@ -239,8 +239,6 @@ quoted-pair       = "\" CHAR
 				<artwork><![CDATA[
 method            = token
                   
-request-uri       = "*" / absolute-uri / path-absolute / authority
-                  
 http-version      = "HTTP" *lws "/" *lws 1*DIGIT *lws "." *lws 1*DIGIT
                   
 header            = header-name *lws ":" *lws header-value *lws [ CR ] LF
@@ -262,6 +260,8 @@ request           = request-line *( header / invalid-header ) [ CR ] LF
                     message-body
                   
 request-line      = method SP request-uri SP http-version [ CR ] LF
+                  
+request-uri       = "*" / absolute-uri / path-absolute / authority
 				]]></artwork>
 			</figure>
 		</section>
