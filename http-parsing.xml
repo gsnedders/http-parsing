@@ -212,6 +212,11 @@ quoted-pair       = "\" CHAR
 			  otherwise unconstrained inputs, e.g., to prevent denial of service
 			  attacks, to guard against running out of memory, or to work around
 			  platform-specific limitations.</t>
+			
+			<t>This specification defines two different types of parsers:
+			  "strict" parsers, and "non-strict" parsers. It is RECOMMENDED that
+			  request parsers are strict parsers, and that response parsers are
+			  non-strict parsers.</t>
 		</section>
 	</section>
 	
