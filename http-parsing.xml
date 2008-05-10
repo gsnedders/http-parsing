@@ -240,6 +240,16 @@ quoted-pair       = "\" CHAR
 		  response rule for responses. If the appropriate rule fails to match,
 		  it is a <xref target="fatal-error">fatal error</xref>.</t>
 		
+		<t>If the parser is a strict parser, a <xref target="fatal-error">fatal
+		  error</xref> MUST be thrown in any of the following circumstances:
+		  
+		  <list style="symbols">
+		  	<t>There are any matches for the invalid-header rule, or</t>
+		  	<t>There are any matches for header-name that do not also match the
+		  	  token rule.</t>
+		  </list>
+		</t>
+		
 		<section title="Shared Rules">
 			<figure>
 				<artwork><![CDATA[
