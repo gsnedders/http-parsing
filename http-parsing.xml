@@ -151,23 +151,23 @@
 			  	<preamble>Rules inherited from <xref target="RFC2616"/>
 			  	  converted to <xref target="RFC5234"/> ABNF:</preamble>
 			  	<artwork><![CDATA[
-lws            = [CRLF] 1*( SP / HTAB )
-
-separators     = "(" / ")" / "<" / ">" / "@" / "," / ";" / ":" / "\"
-                 / DQUOTE / "/" / "[" / "]" / "?" / "=" / "{" / "}"
-                 / SP / HTAB
-
-token          = 1*( "!" / "#" / "$" / "%" / "&" / "'" / "*" / "+"
-                 / "-" / "." / "^" / "_" / "`" / "|" / "~" / DIGIT /
-                 ALPHA )
-
-comment        = "(" *( ctext / quoted-pair / comment ) ")"
-ctext          = %x21-27 / %x2A-7E / %x80-FF / lws
-
-quoted-string  = ( DQUOTE *( qdtext / quoted-pair ) DQUOTE )
-qdtext          = %x21 / %x23-5B / %x5D-7E / %x80-FF / lws
-
-quoted-pair    = "\" CHAR
+lws               = [CRLF] 1*( SP / HTAB )
+			      
+separators        = "(" / ")" / "<" / ">" / "@" / "," / ";" / ":" / "\"
+                    / DQUOTE / "/" / "[" / "]" / "?" / "=" / "{" / "}"
+                    / SP / HTAB
+			      
+token             = 1*( "!" / "#" / "$" / "%" / "&" / "'" / "*" / "+"
+                    / "-" / "." / "^" / "_" / "`" / "|" / "~" / DIGIT /
+                    ALPHA )
+			      
+comment           = "(" *( ctext / quoted-pair / comment ) ")"
+ctext             = %x21-27 / %x2A-7E / %x80-FF / lws
+			      
+quoted-string     = ( DQUOTE *( qdtext / quoted-pair ) DQUOTE )
+qdtext             = %x21 / %x23-5B / %x5D-7E / %x80-FF / lws
+			      
+quoted-pair       = "\" CHAR
 					]]></artwork>
 				</figure>
 				
@@ -185,9 +185,9 @@ quoted-pair    = "\" CHAR
 			
 			<t>interactive user agent
 				<list>
-				    <t>This is a type of user agent, which directly returns the
-				      result to the same user that made the request (e.g., web
-				      browsers).</t>
+					<t>This is a type of user agent, which directly returns the
+					  result to the same user that made the request (e.g., web
+					  browsers).</t>
 				</list>
 			</t>
 			
@@ -238,17 +238,17 @@ quoted-pair    = "\" CHAR
 		<section title="Shared Rules">
 			<figure>
 				<artwork><![CDATA[
-method         = token
-
-request-uri    = "*" / absolute-uri / path-absolute / authority
-
-http-version   = "HTTP" *lws "/" *lws 1*DIGIT *lws "." *lws 1*DIGIT
-
-header         = header-name *lws ":" *lws header-value *lws [ CR ] LF
-header-name    = 1*header-content-nc
-header-value   = header-content
-                 [ *( header-content / lws ) header-content ]
-header-content = header-content-nc / ":"
+method            = token
+			      
+request-uri       = "*" / absolute-uri / path-absolute / authority
+			      
+http-version      = "HTTP" *lws "/" *lws 1*DIGIT *lws "." *lws 1*DIGIT
+			      
+header            = header-name *lws ":" *lws header-value *lws [ CR ] LF
+header-name       = 1*header-content-nc
+header-value      = header-content
+                    [ *( header-content / lws ) header-content ]
+header-content    = header-content-nc / ":"
 header-content-nc = ( %x00-08 / %x0B-0C / %x0E-1F / %x21-39 / %x3B-FF )
 
 invalid-header = 1*header-content-nc [ ":" ] [ CR ] LF
@@ -259,10 +259,10 @@ invalid-header = 1*header-content-nc [ ":" ] [ CR ] LF
 		<section title="Requests">			
 		  <figure>
 			<artwork><![CDATA[
-request        = request-line *( header / invalid-header ) [ CR ] LF
-                 message-body
-
-request-line   = method SP request-uri SP http-version [ CR ] LF
+request           = request-line *( header / invalid-header ) [ CR ] LF
+                    message-body
+			      
+request-line      = method SP request-uri SP http-version [ CR ] LF
 				]]></artwork>
 			</figure>
 		</section>
