@@ -242,7 +242,7 @@ method         = token
 
 request-uri    = "*" / absolute-uri / path-absolute / authority
 
-http-version   = "HTTP/" 1*DIGIT "." 1*DIGIT
+http-version   = "HTTP" *lws "/" *lws 1*DIGIT *lws "." *lws 1*DIGIT
 
 header         = header-name *lws ":" *lws header-value *lws [CR] LF
 header-name    = 1*( %x00-08 / %x0B / %x0C / %x0E-1F / %x21-39 / %x3B-FF )
