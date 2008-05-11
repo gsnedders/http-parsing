@@ -241,7 +241,8 @@ method            = token
                   
 http-version      = "HTTP" *lws "/" *lws 1*DIGIT *lws "." *lws 1*DIGIT
                   
-header            = header-name *lws ":" *lws header-value *lws [ CR ] LF
+header            = header-name *lws ":" *lws header-value *lws [ CR ]
+                    LF
 header-name       = 1*header-content-nc
 header-value      = header-content
                     [ *( header-content / lws ) header-content ]
