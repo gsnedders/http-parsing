@@ -94,6 +94,9 @@
 			  so well known there is no need to expand it. Either we expand it
 			  elsewhere apart from the abstract (i.e., in the title and its
 			  first occurrence in the body of the document), or nowhere at all.</t>
+			
+			<t>Fix all xml2rfc warnings (these are currently all related to
+			  artwork being outdented.</t>
 		</list></t>
 	</note>
 </front>
