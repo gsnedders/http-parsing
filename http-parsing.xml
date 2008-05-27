@@ -242,8 +242,7 @@ quoted-pair       = "\" CHAR
 				<artwork><![CDATA[
 method            = token
 
-http              = %x48 %x54 %x54 %x50 ; Uppercase "HTTP"
-http-version      = http "/" 1*DIGIT "." 1*DIGIT
+http-version      = "HTTP/" 1*DIGIT "." 1*DIGIT
                   
 header            = header-name ":" *lws header-value *lws [ CR ] LF
 header-name       = 1*header-content-nc
