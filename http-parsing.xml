@@ -138,7 +138,7 @@
 			  	<preamble>Rules inherited from <xref target="RFC2616"/>
 			  	  converted to <xref target="RFC5234"/> ABNF:</preamble>
 			  	<artwork><![CDATA[
-lws               = [CRLF] 1*( SP / HTAB )
+lws               = [ [ CR ] LF ] 1*( SP / HTAB )
                   
 separators        = "(" / ")" / "<" / ">" / "@" / "," / ";" / ":" / "\"
                     / DQUOTE / "/" / "[" / "]" / "?" / "=" / "{" / "}"
@@ -241,11 +241,11 @@ quoted-pair       = "\" CHAR
 			<figure>
 				<artwork><![CDATA[
 method            = token
+
+http              = %x48 %x54 %x54 %x50 ; Uppercase "HTTP"
+http-version      = http "/" 1*DIGIT "." 1*DIGIT
                   
-http-version      = "HTTP" *lws "/" *lws 1*DIGIT *lws "." *lws 1*DIGIT
-                  
-header            = header-name *lws ":" *lws header-value *lws [ CR ]
-                    LF
+header            = header-name ":" *lws header-value *lws [ CR ] LF
 header-name       = 1*header-content-nc
 header-value      = header-content
                     [ *( header-content / lws ) header-content ]
