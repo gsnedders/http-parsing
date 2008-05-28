@@ -85,7 +85,7 @@ class HTTPParsingReponseTestServer(SimpleHTTPServer.SimpleHTTPRequestHandler):
 			elif self.path == "/runtests.css":
 				self.send_header("Content-type", "text/css;charset=utf-8")
 			else:
-				self.send_header("Content-type", "text/plain")
+				self.send_header("Content-type", "application/octet-stream")
 			fs = os.fstat(f.fileno())
 			self.send_header("Content-Length", str(fs[6]))
 			self.send_header("Last-Modified", self.date_time_string(fs.st_mtime))
