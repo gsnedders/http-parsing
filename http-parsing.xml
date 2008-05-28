@@ -244,14 +244,14 @@ method            = token
 
 http-version      = "HTTP/" 1*DIGIT "." 1*DIGIT
                   
-header            = header-name ":" *lws header-value *lws [ CR ] LF
+header            = header-name ":" *lws header-value *lws
 header-name       = 1*header-content-nc
 header-value      = header-content
                     [ *( header-content / lws ) header-content ]
 header-content    = header-content-nc / ":"
 header-content-nc = ( %x00-08 / %x0B-0C / %x0E-1F / %x21-39 / %x3B-FF )
                   
-invalid-header    = ( [ ":" ] 1*header-content-nc [ ":" ] / 1*":" ) [ CR ] LF
+invalid-header    = ( [ ":" ] 1*header-content-nc [ ":" ] / 1*":" )
 				]]></artwork>
 			</figure>
 		</section>
@@ -259,8 +259,8 @@ invalid-header    = ( [ ":" ] 1*header-content-nc [ ":" ] / 1*":" ) [ CR ] LF
 		<section title="Requests">			
 		  <figure>
 			<artwork><![CDATA[
-request           = request-line *( header / invalid-header ) [ CR ] LF
-                    message-body
+request           = request-line *( ( header / invalid-header )
+                    [ CR ] LF ) [ CR ] LF message-body
                   
 request-line      = method SP request-uri SP http-version [ CR ] LF
                   
