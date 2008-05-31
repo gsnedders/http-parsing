@@ -60,13 +60,13 @@ function compare(exp, got)
 	{
 		var exp_v = exp.headers[n];
 		var got_v = got.getResponseHeader(n);
-		if (is_case_insensitive_header(n))
+		if (typeof got_v == "string" && is_case_insensitive_header(n))
 		{
 			got_v = got_v.toLowerCase();
 		}
 		if (exp_v != got_v)
 		{
-			fail('Got "' + n + '" header "' + got_v + '", expected "' + exp_v + '"');
+			fail('Got "' + n + '" header "' + String(got_v) + '", expected "' + String(exp_v) + '"');
 		}
 	}
 	// Check the body matches expected
