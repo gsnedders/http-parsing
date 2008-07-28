@@ -84,6 +84,8 @@ class HTTPParsingReponseTestServer(SimpleHTTPServer.SimpleHTTPRequestHandler):
 				self.send_header("Content-type", "text/javascript;charset=utf-8")
 			elif self.path == "/runtests.css":
 				self.send_header("Content-type", "text/css;charset=utf-8")
+			elif self.path.startswith("/expected"):
+				self.send_header("Content-type", "application/json")
 			else:
 				self.send_header("Content-type", "application/octet-stream")
 			fs = os.fstat(f.fileno())
