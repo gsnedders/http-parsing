@@ -87,7 +87,7 @@ function run_test(test)
 {
 	var ok = false;
 	var expected_xhr = new_xhr();
-	expected_xhr.onreadystatechange = function()
+	expected_xhr_onreadystatechange = function()
 	{
 		if (expected_xhr.readyState != 4)
 		{
@@ -108,7 +108,7 @@ function run_test(test)
 			return;
 		}
 		var test_xhr = new_xhr();
-		test_xhr.onreadystatechange = function()
+		test_xhr_onreadystatechange = function()
 		{
 			if (test_xhr.readyState != 4)
 			{
@@ -116,8 +116,34 @@ function run_test(test)
 			}
 			ok = compare(expected, test_xhr);
 		}
+		if (navigator.userAgent.match(/Gecko\/\d+/))
+		{
+			test_xhr.onload = function(e)
+			{
+				var evt = window.event ? window.event : e;
+				var targ = evt.target ? evt.target : evt.srcElement;
+				test_xhr_onreadystatechange();
+			}
+		}
+		else
+		{
+			test_xhr.onreadystatechange = test_xhr_onreadystatechange;
+		}
 		test_xhr.open('GET', 'tests/' + test + '.http', false);
 		test_xhr.send(null);
+	}
+	if (navigator.userAgent.match(/Gecko\/\d+/))
+	{
+		expected_xhr.onload = function(e)
+		{
+			var evt = window.event ? window.event : e;
+			var targ = evt.target ? evt.target : evt.srcElement;
+			expected_xhr_onreadystatechange();
+		}
+	}
+	else
+	{
+		expected_xhr.onreadystatechange = expected_xhr_onreadystatechange;
 	}
 	expected_xhr.open('GET', 'expected/' + test + '.expected', false);
 	expected_xhr.send(null);
