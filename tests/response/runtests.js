@@ -115,7 +115,7 @@ function run_test(test)
 				return;
 			}
 			ok = compare(expected, test_xhr);
-		};
+		}
 		test_xhr.open('GET', 'tests/' + test + '.http', false);
 		test_xhr.send(null);
 	}
@@ -144,7 +144,15 @@ function start()
 	{
 		update_status('Running… (test ' + (i + 1) + '/' + test_names.length + ', currently passed ' + passes + ')');
 		log('Test ' + (i + 1) + ': ' + test_names[i]);
-		var pass = run_test(test_names[i]);
+		try
+		{
+			var pass = run_test(test_names[i]);
+		}
+		catch(e)
+		{
+			var pass = false;
+			log(e);
+		}
 		test_result(test_names[i], pass);
 		if (pass)
 		{
