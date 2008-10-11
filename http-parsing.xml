@@ -248,11 +248,19 @@ quoted-pair       = "\" CHAR
           </list>
         </t>
         
+        <t>If the major-version is not "0" or "1", then the recipient of the
+          message MAY behave in any way it so wishes (i.e., behaviour is
+          undefined).</t>
+        
         <section title="Shared Rules">
             <figure>
                 <artwork><![CDATA[
-http-version      = "HTTP/" 1*DIGIT "." 1*DIGIT
+http-version      = "HTTP/" *"0" major-version "." *"0" minor-version
                         ; Note that strings in ABNF are case-insensitive
+
+version-string    = %x31-39 *DIGIT
+major-version     = version-string
+minor-version     = version-string
                   
 header            = header-name ":" *LWS header-value *LWS
 header-name       = 1*header-content-nc
