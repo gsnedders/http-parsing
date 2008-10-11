@@ -139,6 +139,10 @@
                   converted to <xref target="RFC5234"/> ABNF:</preamble>
                 <artwork><![CDATA[
 LWS               = [ [ CR ] LF ] 1*( SP / HTAB )
+                        ; This is changed from RFC2616, as CR is now optional
+                        ; within the already optional line break sequence (this
+                        ; is suggested in RFC2616's section 19.3, "Tolerant
+                        ; Applications").
                   
 separators        = "(" / ")" / "<" / ">" / "@" / "," / ";" / ":" / "\"
                     / DQUOTE / "/" / "[" / "]" / "?" / "=" / "{" / "}"
