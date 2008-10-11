@@ -252,7 +252,7 @@ quoted-pair       = "\" CHAR
             <figure>
                 <artwork><![CDATA[
 http-version      = "HTTP/" 1*DIGIT "." 1*DIGIT
-                    ; Note that strings in ABNF are case-insensitive
+                        ; Note that strings in ABNF are case-insensitive
                   
 header            = header-name ":" *LWS header-value *LWS
 header-name       = 1*header-content-nc
