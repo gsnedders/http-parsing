@@ -250,9 +250,10 @@ quoted-pair       = "\" CHAR
           </list>
         </t>
         
-        <t>If the major-version is not "0" or "1", then the recipient of the
-          message MAY behave in any way it so wishes (i.e., behaviour is
-          undefined).</t>
+        <t>If the major-version is "0" or "1" (or has no match although the
+          appropriate rule as a whole matches), then the recipient of the
+          message MUST follow this specification; if it is not, it is
+          RECOMMENDED to follow this specification.</t>
         
         <section title="Shared Rules">
             <figure>
