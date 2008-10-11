@@ -224,15 +224,15 @@ quoted-pair       = "\" CHAR
           types of errors.</t>
         
         <section title="Fatal Error" anchor="fatal-error">
-            <t>The tokeniser/parser MUST stop processing immediately. If a
+            <t>The tokenizer/parser MUST stop processing immediately. If a
               request is being parsed, the server MUST respond with 400 (Bad
               Request); if a response is being parsed, the client SHOULD report
               the error.</t>
         </section>
     </section>
     
-    <!-- !Tokenisation -->
-    <section title="Tokenisation">
+    <!-- !Tokenization -->
+    <section title="Tokenization">
         <t>A HTTP request/response MUST be broken up into header-fields and
           message-body following the request rule for requests, and the
           response rule for responses. If the appropriate rule fails to match,
@@ -316,7 +316,7 @@ reason-phrase     = *( %x00-09 / %x0B-0C / %x0E-FF )
     
     <!-- !Parsing -->
     <section title="Parsing">
-        <t>This section details the processing follows that tokenising.</t>
+        <t>This section details the processing follows that tokenizing.</t>
         
         <!-- !Unescaping Quoted Strings -->
         <section title="Unescaping Quoted Strings" anchor="unescaping-quoted-strings">
