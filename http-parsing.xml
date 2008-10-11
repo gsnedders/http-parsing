@@ -281,7 +281,11 @@ invalid-header    = ( [ ":" *LWS ] 1*header-content-nc [ *LWS ":" ] / 1*":" /
         <section title="Requests">          
           <figure>
             <artwork><![CDATA[
-request           = request-line *( ( header / invalid-header )
+request           = simple-request / full-request
+
+simple-request    = "GET" absolute-uri / path-absolute [ CR ] LF
+
+full-request      = request-line *( ( header / invalid-header )
                     [ CR ] LF ) [ CR ] LF message-body
                   
 request-line      = method SP request-uri SP http-version [ CR ] LF
