@@ -283,8 +283,8 @@ invalid-header    = ( [ ":" *LWS ] 1*header-content-nc [ *LWS ":" ] / 1*":" /
         </section>
         
         <section title="Requests">          
-          <figure>
-            <artwork><![CDATA[
+            <figure>
+                <artwork><![CDATA[
 request           = simple-request / full-request
 
 simple-request    = "GET" absolute-uri / path-absolute [ CR ] LF
@@ -300,8 +300,8 @@ request-uri       = "*" / absolute-uri / path-absolute / authority
         </section>
         
         <section title="Responses">          
-          <figure>
-            <artwork><![CDATA[
+            <figure>
+                <artwork><![CDATA[
 response          = status-line *( ( header / invalid-header )
                     [ CR ] LF ) [ CR ] LF message-body
                   
@@ -311,6 +311,9 @@ reason-phrase     = *( %x00-09 / %x0B-0C / %x0E-FF )
                         ; Everything except CR and LF
                 ]]></artwork>
             </figure>
+            
+            <t>If there is no reason-phrase, let it be equal to "OK". If there
+              is no status-code, let it be equal to 200.</t>
         </section>
     </section>
     
