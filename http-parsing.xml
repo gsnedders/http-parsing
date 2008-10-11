@@ -97,6 +97,9 @@
             
             <t>Fix all xml2rfc warnings (these are currently all related to
               artwork being outdented.</t>
+            
+            <t>CHAR is different between <xref target="RFC2616"/> and
+              <xref target="RFC5234"/> --- reality check is needed.</t>
         </list></t>
     </note>
 </front>
