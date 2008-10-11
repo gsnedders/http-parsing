@@ -102,6 +102,8 @@
               <xref target="RFC5234"/> --- reality check is needed.</t>
             
             <t>Look at behaviour for things apart from HTTP/1.</t>
+            
+            <t>Actually test responses.</t>
         </list></t>
     </note>
 </front>
@@ -293,6 +295,20 @@ full-request      = request-line *( ( header / invalid-header )
 request-line      = method SP request-uri SP http-version [ CR ] LF
 method            = token                  
 request-uri       = "*" / absolute-uri / path-absolute / authority
+                ]]></artwork>
+            </figure>
+        </section>
+        
+        <section title="Responses">          
+          <figure>
+            <artwork><![CDATA[
+response          = status-line *( ( header / invalid-header )
+                    [ CR ] LF ) [ CR ] LF message-body
+                  
+status-line       = http-version SP status-code [ SP reason-phrase ] [ CR ] LF
+status-code       = 3DIGIT                  
+reason-phrase     = *( %x00-09 / %x0B-0C / %x0E-FF )
+                        ; Everything except CR and LF
                 ]]></artwork>
             </figure>
         </section>
