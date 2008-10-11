@@ -100,6 +100,8 @@
             
             <t>CHAR is different between <xref target="RFC2616"/> and
               <xref target="RFC5234"/> --- reality check is needed.</t>
+            
+            <t>Look at behaviour for things apart from HTTP/1.</t>
         </list></t>
     </note>
 </front>
