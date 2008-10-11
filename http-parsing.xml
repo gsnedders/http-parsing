@@ -237,8 +237,8 @@ quoted-pair       = "\" CHAR
           it is a <xref target="fatal-error">fatal error</xref>.</t>
         
         <t>Any matches of the LWS rule MUST be replaced by a single 0x20 byte
-          (US-ASCII space), and consecutive matches of the LWS rule MUST be
-          compressed to a single 0x20 byte.</t>
+          (US-ASCII space), except where there are consecutive matches of the
+          LWS rule, where they MUST be compressed to a single 0x20 byte.</t>
         
         <t>If the parser is a strict parser, a <xref target="fatal-error">fatal
           error</xref> MUST be thrown in any of the following circumstances:
