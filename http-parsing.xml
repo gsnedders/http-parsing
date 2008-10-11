@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="US-ASCII"?>
 <!DOCTYPE rfc PUBLIC "-//IETF//DTD RFC 2629//EN"
-	"http://xml.resource.org/authoring/rfc2629.dtd" [
+    "http://xml.resource.org/authoring/rfc2629.dtd" [
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY RFC2616 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2616.xml">
 <!ENTITY RFC3986 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3986.xml">
@@ -19,125 +19,125 @@
 <?rfc inline="yes"?>
 <rfc ipr="noDerivatives3978" category="info" updates="2109, 2616, 2965">
 <front>
-	<title>Tolerant HTTP Parsing</title>
-	<author initials="G.M." surname="Sneddon" fullname="Geoffrey Sneddon">
-	<!-- I work for no organisation, so no need for this to even be opened. -->
-	<organization/>
-	<address>
-		<postal>
-			<street>Toll Park</street>
-			<street>20 Hepburn Gardens</street>
-			<city>St Andrews</city>
-			<region>Fife</region>
-			<code>KY16 9DE</code>
-			<country>GB</country>
-		</postal>
-		<phone>+44 7807 360 291</phone>
-		<email>geoffers@gmail.com</email>
-		<uri>http://gsnedders.com/</uri>
-	</address>
-	</author>
-	<!-- This is omitted while in draft, else I always forget to change it -->
-	<date/>
-	<area>Applications</area>
-	<keyword>I-D</keyword>
-	<keyword>Internet-Draft</keyword>
-	<keyword>HTTP</keyword>
-	<keyword>HyperText Transfer Protocol</keyword>
-	<!-- !Abstract -->
-	<abstract>
-		<t>The HyperText Transfer Protocol (HTTP) has been widely used by the 
-		  World Wide Web (WWW) since 1990. This specification updates RFC 2616,
-		  defining how to parse HTTP requests and responses in a way that is
-		  compatible with user-agents (UAs) and servers at the time of writing.</t>
-	</abstract>
-	
-	<!-- Editorial Note -->
-	<note title="Editorial Note">
-		<t><cref>Remove this section upon publication.</cref></t>
-		
-		<t>This is a work in progress, and may change in part, or in whole. Do
-		  not take anything in any draft version to be final. Comments are
-		  very welcome, and should be sent to
-		  <eref target="mailto:geoffers@gmail.com">geoffers@gmail.com</eref>
-		  .</t>
-		
-		<t>Known issues as of writing:</t>
-		
-		<t><list style="symbols">
-			<t>The majority of the parsing algorithm is yet to be written.</t>
-			
-			<t><xref target="RFC2616"/> isn't properly referenced.</t>
-			
-			<t>Security Considerations needs:
-				<list style="letters">
-					<t>"one thing for the security section of that draft is the
-					  need for implementations to follow the spec exactly lest
-					  they be vulnerable to content stuffing that abuses
-					  differences in parsing algorithms" - Hixie</t>
-					
-					<t>Most are unchanged from <xref target="RFC2616"/>.</t>
-				</list>
-			</t>
-									
-			<t>Define handling of various things, which should make <xref target="further-suggestions"/>
-			  obsolete. This means moving Content-Type sniffing into this spec,
-			  as part of parsing the Content-Type header, as well as defining
-			  how to resolve the base IRI of a HTTP document.</t>
-			
-			<t>Add anchor attributes for each and every section.</t>
-			
-			<t>Look over <eref target="http://www.ietf.org/ID-Checklist.html"/>
-			  and <eref target="http://www.rfc-editor.org/rfc-editor/instructions2authors.txt"/>.</t>
-			
-			<t>Do we really need to expand HTTP anywhere? It's listed as being
-			  so well known there is no need to expand it. Either we expand it
-			  elsewhere apart from the abstract (i.e., in the title and its
-			  first occurrence in the body of the document), or nowhere at all.</t>
-			
-			<t>Fix all xml2rfc warnings (these are currently all related to
-			  artwork being outdented.</t>
-		</list></t>
-	</note>
+    <title>Tolerant HTTP Parsing</title>
+    <author initials="G.M." surname="Sneddon" fullname="Geoffrey Sneddon">
+    <!-- I work for no organisation, so no need for this to even be opened. -->
+    <organization/>
+    <address>
+        <postal>
+            <street>Toll Park</street>
+            <street>20 Hepburn Gardens</street>
+            <city>St Andrews</city>
+            <region>Fife</region>
+            <code>KY16 9DE</code>
+            <country>GB</country>
+        </postal>
+        <phone>+44 7807 360 291</phone>
+        <email>geoffers@gmail.com</email>
+        <uri>http://gsnedders.com/</uri>
+    </address>
+    </author>
+    <!-- This is omitted while in draft, else I always forget to change it -->
+    <date/>
+    <area>Applications</area>
+    <keyword>I-D</keyword>
+    <keyword>Internet-Draft</keyword>
+    <keyword>HTTP</keyword>
+    <keyword>HyperText Transfer Protocol</keyword>
+    <!-- !Abstract -->
+    <abstract>
+        <t>The HyperText Transfer Protocol (HTTP) has been widely used by the 
+          World Wide Web (WWW) since 1990. This specification updates RFC 2616,
+          defining how to parse HTTP requests and responses in a way that is
+          compatible with user-agents (UAs) and servers at the time of writing.</t>
+    </abstract>
+    
+    <!-- Editorial Note -->
+    <note title="Editorial Note">
+        <t><cref>Remove this section upon publication.</cref></t>
+        
+        <t>This is a work in progress, and may change in part, or in whole. Do
+          not take anything in any draft version to be final. Comments are
+          very welcome, and should be sent to
+          <eref target="mailto:geoffers@gmail.com">geoffers@gmail.com</eref>
+          .</t>
+        
+        <t>Known issues as of writing:</t>
+        
+        <t><list style="symbols">
+            <t>The majority of the parsing algorithm is yet to be written.</t>
+            
+            <t><xref target="RFC2616"/> isn't properly referenced.</t>
+            
+            <t>Security Considerations needs:
+                <list style="letters">
+                    <t>"one thing for the security section of that draft is the
+                      need for implementations to follow the spec exactly lest
+                      they be vulnerable to content stuffing that abuses
+                      differences in parsing algorithms" - Hixie</t>
+                    
+                    <t>Most are unchanged from <xref target="RFC2616"/>.</t>
+                </list>
+            </t>
+                                    
+            <t>Define handling of various things, which should make <xref target="further-suggestions"/>
+              obsolete. This means moving Content-Type sniffing into this spec,
+              as part of parsing the Content-Type header, as well as defining
+              how to resolve the base IRI of a HTTP document.</t>
+            
+            <t>Add anchor attributes for each and every section.</t>
+            
+            <t>Look over <eref target="http://www.ietf.org/ID-Checklist.html"/>
+              and <eref target="http://www.rfc-editor.org/rfc-editor/instructions2authors.txt"/>.</t>
+            
+            <t>Do we really need to expand HTTP anywhere? It's listed as being
+              so well known there is no need to expand it. Either we expand it
+              elsewhere apart from the abstract (i.e., in the title and its
+              first occurrence in the body of the document), or nowhere at all.</t>
+            
+            <t>Fix all xml2rfc warnings (these are currently all related to
+              artwork being outdented.</t>
+        </list></t>
+    </note>
 </front>
 <middle>
-	<!-- !Introduction -->
-	<section title="Introduction">
-		<t>Ever since HTTP's conception, there have never been any standards
-		  regarding its parsing in the real world. <xref target="RFC2616"/>
-		  tried to improve this situation with a section (19.3) entitled 
-		  "Tolerant Applications", providing advice about parsing requests and
-		  responses. However, it did not go into specific details that are
-		  needed for interoperability with current (non-conformant) user-agents
-		  (UAs) and servers. The lack of any current specification defining such
-		  specifics makes it hard for any new UA to be created without first
-		  spending large amounts of time reverse engineering what is in cases
-		  purely bizarre behaviour, which unless you know about beforehand, you
-		  may not write enough test cases to find some of the oddest behaviour.</t>
-		
-		<t>This specification aims to help the above mentioned problem by
-		  documenting the behaviour of UAs at the time of writing. Hopefully,
-		  over time, the real world will align itself with this specification.</t>
-		
-		<!-- !Notational Conventions -->
-		<section title="Notational Conventions">
-			<t>This specification is defined in terms of the US-ASCII character
-			  set, as defined in <xref target="ANSI.X3-4.1986"/>.</t>
-			
-			<t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL",
-			  "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and
-			  "OPTIONAL" in this document are to be interpreted as described in
-			  <xref target="RFC2119"/>.</t>
-			
-			<t>This specification is defined in terms of ABNF, as described in
-			  <xref target="RFC5234"/>.</t>
-			
-			<!-- !Basic ABNF Rules -->
-			<section title="Basic ABNF Rules">
-			  <figure>
-			  	<preamble>Rules inherited from <xref target="RFC2616"/>
-			  	  converted to <xref target="RFC5234"/> ABNF:</preamble>
-			  	<artwork><![CDATA[
+    <!-- !Introduction -->
+    <section title="Introduction">
+        <t>Ever since HTTP's conception, there have never been any standards
+          regarding its parsing in the real world. <xref target="RFC2616"/>
+          tried to improve this situation with a section (19.3) entitled 
+          "Tolerant Applications", providing advice about parsing requests and
+          responses. However, it did not go into specific details that are
+          needed for interoperability with current (non-conformant) user-agents
+          (UAs) and servers. The lack of any current specification defining such
+          specifics makes it hard for any new UA to be created without first
+          spending large amounts of time reverse engineering what is in cases
+          purely bizarre behaviour, which unless you know about beforehand, you
+          may not write enough test cases to find some of the oddest behaviour.</t>
+        
+        <t>This specification aims to help the above mentioned problem by
+          documenting the behaviour of UAs at the time of writing. Hopefully,
+          over time, the real world will align itself with this specification.</t>
+        
+        <!-- !Notational Conventions -->
+        <section title="Notational Conventions">
+            <t>This specification is defined in terms of the US-ASCII character
+              set, as defined in <xref target="ANSI.X3-4.1986"/>.</t>
+            
+            <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL",
+              "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and
+              "OPTIONAL" in this document are to be interpreted as described in
+              <xref target="RFC2119"/>.</t>
+            
+            <t>This specification is defined in terms of ABNF, as described in
+              <xref target="RFC5234"/>.</t>
+            
+            <!-- !Basic ABNF Rules -->
+            <section title="Basic ABNF Rules">
+              <figure>
+                <preamble>Rules inherited from <xref target="RFC2616"/>
+                  converted to <xref target="RFC5234"/> ABNF:</preamble>
+                <artwork><![CDATA[
 LWS               = [ [ CR ] LF ] 1*( SP / HTAB )
                   
 separators        = "(" / ")" / "<" / ">" / "@" / "," / ";" / ":" / "\"
@@ -155,95 +155,95 @@ quoted-string     = ( DQUOTE *( qdtext / quoted-pair ) DQUOTE )
 qdtext             = %x21 / %x23-5B / %x5D-7E / %x80-FF / LWS
                   
 quoted-pair       = "\" CHAR
-					]]></artwork>
-				</figure>
-				
-				<t>As well as the above, this specification also inherits all
-				  the rules from <xref target="RFC3986"/>, which as they are
-				  given in ABNF are not repeated here.</t>
-			</section>
-			
-		</section>
-		
-		<!-- !Terminology -->
-		<section title="Terminology">
-			<t>Terminology is as in <xref target="RFC2616"/> Section 1.3, with
-			  the following additions:</t>
-			
-			<t>interactive user agent
-				<list>
-					<t>This is a type of user agent, which directly returns the
-					  result to the same user that made the request (e.g., web
-					  browsers).</t>
-				</list>
-			</t>
-			
-			<t>non-interactive user agent
-				<list>
-					<t>This is a type of user agents, which don't return the
-					  result of the request to the user that made the request
-					  (e.g., search engine spiders).</t>
-				</list>
-			</t>
-		</section>
-		
-		<!-- !Conformance Requirements -->
-		<section title="Conformance Requirements">
-			<t>The conformance requirements of this specification are phrased as
-			  algorithms and may be implemented in any manner, so long as the
-			  end result is equivalent (in particular, the algorithms defined in
-			  this specification are intended to be easy to follow, and not
-			  intended to be performant).</t>
-			
-			<t>Implementations may impose implementation-specific limits on
-			  otherwise unconstrained inputs, e.g., to prevent denial of service
-			  attacks, to guard against running out of memory, or to work around
-			  platform-specific limitations.</t>
-			
-			<t>This specification defines two different types of parsers:
-			  "strict" parsers, and "non-strict" parsers. It is RECOMMENDED that
-			  request parsers are strict parsers, and that response parsers are
-			  non-strict parsers.</t>
-		</section>
-	</section>
-	
-	<!-- !Errors -->
-	<section title="Errors">
-		<t>This section describes the behaviour that MUST be taken on certain
-		  types of errors.</t>
-		
-		<section title="Fatal Error" anchor="fatal-error">
-			<t>The tokeniser/parser MUST stop processing immediately. If a
-			  request is being parsed, the server MUST respond with 400 (Bad
-			  Request); if a response is being parsed, the client SHOULD report
-			  the error.</t>
-		</section>
-	</section>
-	
-	<!-- !Tokenisation -->
-	<section title="Tokenisation">
-		<t>A HTTP request/response MUST be broken up into header-fields and
-		  message-body following the request rule for requests, and the
-		  response rule for responses. If the appropriate rule fails to match,
-		  it is a <xref target="fatal-error">fatal error</xref>.</t>
-		
-		<t>Any matches of the LWS rule MUST be replaced by a single 0x20 byte
-		  (US-ASCII space), and consecutive matches of the LWS rule MUST be
-		  compressed to a single 0x20 byte.</t>
-		
-		<t>If the parser is a strict parser, a <xref target="fatal-error">fatal
-		  error</xref> MUST be thrown in any of the following circumstances:
-		  
-		  <list style="symbols">
-		  	<t>There are any matches for the invalid-header rule, or</t>
-		  	<t>There are any matches for header-name that do not also match the
-		  	  token rule.</t>
-		  </list>
-		</t>
-		
-		<section title="Shared Rules">
-			<figure>
-				<artwork><![CDATA[
+                    ]]></artwork>
+                </figure>
+                
+                <t>As well as the above, this specification also inherits all
+                  the rules from <xref target="RFC3986"/>, which as they are
+                  given in ABNF are not repeated here.</t>
+            </section>
+            
+        </section>
+        
+        <!-- !Terminology -->
+        <section title="Terminology">
+            <t>Terminology is as in <xref target="RFC2616"/> Section 1.3, with
+              the following additions:</t>
+            
+            <t>interactive user agent
+                <list>
+                    <t>This is a type of user agent, which directly returns the
+                      result to the same user that made the request (e.g., web
+                      browsers).</t>
+                </list>
+            </t>
+            
+            <t>non-interactive user agent
+                <list>
+                    <t>This is a type of user agents, which don't return the
+                      result of the request to the user that made the request
+                      (e.g., search engine spiders).</t>
+                </list>
+            </t>
+        </section>
+        
+        <!-- !Conformance Requirements -->
+        <section title="Conformance Requirements">
+            <t>The conformance requirements of this specification are phrased as
+              algorithms and may be implemented in any manner, so long as the
+              end result is equivalent (in particular, the algorithms defined in
+              this specification are intended to be easy to follow, and not
+              intended to be performant).</t>
+            
+            <t>Implementations may impose implementation-specific limits on
+              otherwise unconstrained inputs, e.g., to prevent denial of service
+              attacks, to guard against running out of memory, or to work around
+              platform-specific limitations.</t>
+            
+            <t>This specification defines two different types of parsers:
+              "strict" parsers, and "non-strict" parsers. It is RECOMMENDED that
+              request parsers are strict parsers, and that response parsers are
+              non-strict parsers.</t>
+        </section>
+    </section>
+    
+    <!-- !Errors -->
+    <section title="Errors">
+        <t>This section describes the behaviour that MUST be taken on certain
+          types of errors.</t>
+        
+        <section title="Fatal Error" anchor="fatal-error">
+            <t>The tokeniser/parser MUST stop processing immediately. If a
+              request is being parsed, the server MUST respond with 400 (Bad
+              Request); if a response is being parsed, the client SHOULD report
+              the error.</t>
+        </section>
+    </section>
+    
+    <!-- !Tokenisation -->
+    <section title="Tokenisation">
+        <t>A HTTP request/response MUST be broken up into header-fields and
+          message-body following the request rule for requests, and the
+          response rule for responses. If the appropriate rule fails to match,
+          it is a <xref target="fatal-error">fatal error</xref>.</t>
+        
+        <t>Any matches of the LWS rule MUST be replaced by a single 0x20 byte
+          (US-ASCII space), and consecutive matches of the LWS rule MUST be
+          compressed to a single 0x20 byte.</t>
+        
+        <t>If the parser is a strict parser, a <xref target="fatal-error">fatal
+          error</xref> MUST be thrown in any of the following circumstances:
+          
+          <list style="symbols">
+            <t>There are any matches for the invalid-header rule, or</t>
+            <t>There are any matches for header-name that do not also match the
+              token rule.</t>
+          </list>
+        </t>
+        
+        <section title="Shared Rules">
+            <figure>
+                <artwork><![CDATA[
 http-version      = "HTTP/" 1*DIGIT "." 1*DIGIT
                     ; Note that strings in ABNF are case-insensitive
                   
@@ -257,115 +257,115 @@ header-content-nc = ( %x00-08 / %x0B-0C / %x0E-1F / %x21-39 / %x3B-FF )
 invalid-header    = ( [ ":" *LWS ] 1*header-content-nc [ *LWS ":" ] / 1*":" /
                     1*header-content-nc 1*LWS ":" *LWS header-content
                     [ *( header-content / LWS ) header-content ] ) *LWS
-				]]></artwork>
-			</figure>
-		</section>
-		
-		<section title="Requests">			
-		  <figure>
-			<artwork><![CDATA[
+                ]]></artwork>
+            </figure>
+        </section>
+        
+        <section title="Requests">          
+          <figure>
+            <artwork><![CDATA[
 request           = request-line *( ( header / invalid-header )
                     [ CR ] LF ) [ CR ] LF message-body
                   
 request-line      = method SP request-uri SP http-version [ CR ] LF
 method            = token                  
 request-uri       = "*" / absolute-uri / path-absolute / authority
-				]]></artwork>
-			</figure>
-		</section>
-	</section>
-	
-	<!-- !Parsing -->
-	<section title="Parsing">
-		<t>This section details the processing follows that tokenising.</t>
-		
-		<!-- !Unescaping Quoted Strings -->
-		<section title="Unescaping Quoted Strings" anchor="unescaping-quoted-strings">
-			<t>To unescape a quoted string (i.e., a string that follows the
-			  quoted-string specification in <xref target="RFC2616"/>), the
-			  following algorithm MUST be run:</t>
-			
-			<t><list style="numbers">
-				<t>Let "input" be the string being parsed.</t>
-				
-				<t>If "input" does not match the quoted-string rule, return
-				  "input"; otherwise:</t>
-				
-				<t>Let "string" be the unescaped output string, initially set to
-				  "input".</t>
-				
-				<t>Remove the first and last bytes from "string" (these
-				  are the delimiting 0x22 (US-ASCII quotation mark) bytes).</t>
-				
-				<t>Remove any 0x5C (US-ASCII backslash) bytes that are not
-				  preceded by another 0x5C byte from "string" (taking the
-				  initial state of the string, so that if the preceding byte is
-				  stripped itself (which it will be), the byte is still not
-				  stripped).</t>
-				
-				<t>Return "string".</t>
-			</list></t>
-		</section>
-	</section>
-	
-	<!-- !Security Considerations -->
-	<section title="Security Considerations">
-		<t><cref>This section is just a very rough draft.</cref></t>
-		
-		<t>This specification is just a parsing algorithm, and therefore
-		  any risks (excluding implementations issues such as buffer overflows)
-		  are inherited from <xref target="RFC2616"/>.</t>
-	</section>
-	
-	<!-- !IANA Considerations -->
-	<section title="IANA Considerations">
-		<t>This document has no actions for IANA.</t>
-	</section>
+                ]]></artwork>
+            </figure>
+        </section>
+    </section>
+    
+    <!-- !Parsing -->
+    <section title="Parsing">
+        <t>This section details the processing follows that tokenising.</t>
+        
+        <!-- !Unescaping Quoted Strings -->
+        <section title="Unescaping Quoted Strings" anchor="unescaping-quoted-strings">
+            <t>To unescape a quoted string (i.e., a string that follows the
+              quoted-string specification in <xref target="RFC2616"/>), the
+              following algorithm MUST be run:</t>
+            
+            <t><list style="numbers">
+                <t>Let "input" be the string being parsed.</t>
+                
+                <t>If "input" does not match the quoted-string rule, return
+                  "input"; otherwise:</t>
+                
+                <t>Let "string" be the unescaped output string, initially set to
+                  "input".</t>
+                
+                <t>Remove the first and last bytes from "string" (these
+                  are the delimiting 0x22 (US-ASCII quotation mark) bytes).</t>
+                
+                <t>Remove any 0x5C (US-ASCII backslash) bytes that are not
+                  preceded by another 0x5C byte from "string" (taking the
+                  initial state of the string, so that if the preceding byte is
+                  stripped itself (which it will be), the byte is still not
+                  stripped).</t>
+                
+                <t>Return "string".</t>
+            </list></t>
+        </section>
+    </section>
+    
+    <!-- !Security Considerations -->
+    <section title="Security Considerations">
+        <t><cref>This section is just a very rough draft.</cref></t>
+        
+        <t>This specification is just a parsing algorithm, and therefore
+          any risks (excluding implementations issues such as buffer overflows)
+          are inherited from <xref target="RFC2616"/>.</t>
+    </section>
+    
+    <!-- !IANA Considerations -->
+    <section title="IANA Considerations">
+        <t>This document has no actions for IANA.</t>
+    </section>
 </middle>
 <back>
-	<!-- !Normative References -->
-	<references title="Normative References">
-		&ASCII;
-		&RFC2119;
-		&RFC2616;
-		&RFC3986;
-		&RFC5234;
-	</references>
-	
-	<!-- !Informative References -->
-	<references title="Informative References">
-		&HTML5;
-	</references>
-	
-	<!-- !Acknowledgments -->
-	<section title="Acknowledgments">
-		<t>Thanks to: Ian Hickson, Philip Taylor.</t>
-	</section>
-	
-	<!-- !Further Suggestions -->
-	<section title="Further Suggestions" anchor="further-suggestions">
-		<t>This section is informative.</t>
-		
-		<t>While the scope of this specification is only parsing of HTTP
-		  requests and responses, there are several other things that I am aware
-		  of that should be pointed out to anyone implementing
-		  <xref target="RFC2616"/>:</t>
-		
-		<t><list style="symbols">
-			<t>The Content-Location header SHOULD be ignored. This is due to
-			  multiple versions of Microsoft Internet Information Services (IIS)
-			  sending incorrect Content-Location headers. Implementing this as
-			  required by <xref target="RFC2616"/> will break a significant
-			  number of websites.</t>
-			
-			<t>The Content-Type SHOULD NOT on its own be trusted. Content-Type
-			  sniffing as defined in <xref target="W3C.WD-html5-20080122"/>
-			  SHOULD be used to determine the true type of the resource. This
-			  is due to a large number of websites sending incorrect
-			  Content-Type headers, often because the maintainer of the website
-			  cannot change the header, or because the file extension/MIME type
-			  database is outdated.</t>
-		</list></t>
-	</section>
+    <!-- !Normative References -->
+    <references title="Normative References">
+        &ASCII;
+        &RFC2119;
+        &RFC2616;
+        &RFC3986;
+        &RFC5234;
+    </references>
+    
+    <!-- !Informative References -->
+    <references title="Informative References">
+        &HTML5;
+    </references>
+    
+    <!-- !Acknowledgments -->
+    <section title="Acknowledgments">
+        <t>Thanks to: Ian Hickson, Philip Taylor.</t>
+    </section>
+    
+    <!-- !Further Suggestions -->
+    <section title="Further Suggestions" anchor="further-suggestions">
+        <t>This section is informative.</t>
+        
+        <t>While the scope of this specification is only parsing of HTTP
+          requests and responses, there are several other things that I am aware
+          of that should be pointed out to anyone implementing
+          <xref target="RFC2616"/>:</t>
+        
+        <t><list style="symbols">
+            <t>The Content-Location header SHOULD be ignored. This is due to
+              multiple versions of Microsoft Internet Information Services (IIS)
+              sending incorrect Content-Location headers. Implementing this as
+              required by <xref target="RFC2616"/> will break a significant
+              number of websites.</t>
+            
+            <t>The Content-Type SHOULD NOT on its own be trusted. Content-Type
+              sniffing as defined in <xref target="W3C.WD-html5-20080122"/>
+              SHOULD be used to determine the true type of the resource. This
+              is due to a large number of websites sending incorrect
+              Content-Type headers, often because the maintainer of the website
+              cannot change the header, or because the file extension/MIME type
+              database is outdated.</t>
+        </list></t>
+    </section>
 </back>
 </rfc>
