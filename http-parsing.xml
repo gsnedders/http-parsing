@@ -260,9 +260,10 @@ quoted-pair       = "\" CHAR
 http-version      = "HTTP/" *"0" major-version "." *"0" minor-version
                         ; Note that strings in ABNF are case-insensitive
 
-version-string    = %x31-39 *DIGIT
-major-version     = version-string
-minor-version     = version-string
+version-number    = %x31-39 *DIGIT
+                        ; A version number cannot begin with a "0".
+major-version     = version-number
+minor-version     = version-number
                   
 header            = header-name ":" *LWS header-value *LWS
 header-name       = 1*header-content-nc
