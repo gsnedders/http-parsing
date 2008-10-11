@@ -163,8 +163,8 @@ quoted-pair       = "\" CHAR
                 </figure>
                 
                 <t>As well as the above, this specification also inherits all
-                  the rules from <xref target="RFC3986"/>, which as they are
-                  given in ABNF are not repeated here.</t>
+                  the rules from <xref target="RFC3986"/>, which are not given
+                  here as they are already given in ABNF.</t>
             </section>
             
         </section>
