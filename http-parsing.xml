@@ -138,7 +138,7 @@
 			  	<preamble>Rules inherited from <xref target="RFC2616"/>
 			  	  converted to <xref target="RFC5234"/> ABNF:</preamble>
 			  	<artwork><![CDATA[
-lws               = [ [ CR ] LF ] 1*( SP / HTAB )
+LWS               = [ [ CR ] LF ] 1*( SP / HTAB )
                   
 separators        = "(" / ")" / "<" / ">" / "@" / "," / ";" / ":" / "\"
                     / DQUOTE / "/" / "[" / "]" / "?" / "=" / "{" / "}"
@@ -149,10 +149,10 @@ token             = 1*( "!" / "#" / "$" / "%" / "&" / "'" / "*" / "+"
                     ALPHA )
                   
 comment           = "(" *( ctext / quoted-pair / comment ) ")"
-ctext             = %x21-27 / %x2A-7E / %x80-FF / lws
+ctext             = %x21-27 / %x2A-7E / %x80-FF / LWS
                   
 quoted-string     = ( DQUOTE *( qdtext / quoted-pair ) DQUOTE )
-qdtext             = %x21 / %x23-5B / %x5D-7E / %x80-FF / lws
+qdtext             = %x21 / %x23-5B / %x5D-7E / %x80-FF / LWS
                   
 quoted-pair       = "\" CHAR
 					]]></artwork>
@@ -227,8 +227,8 @@ quoted-pair       = "\" CHAR
 		  response rule for responses. If the appropriate rule fails to match,
 		  it is a <xref target="fatal-error">fatal error</xref>.</t>
 		
-		<t>Any matches of the lws rule MUST be replaced by a single 0x20 byte
-		  (US-ASCII space), and consecutive matches of the lws rule MUST be
+		<t>Any matches of the LWS rule MUST be replaced by a single 0x20 byte
+		  (US-ASCII space), and consecutive matches of the LWS rule MUST be
 		  compressed to a single 0x20 byte.</t>
 		
 		<t>If the parser is a strict parser, a <xref target="fatal-error">fatal
@@ -247,16 +247,16 @@ quoted-pair       = "\" CHAR
 http-version      = "HTTP/" 1*DIGIT "." 1*DIGIT
                     ; Note that strings in ABNF are case-insensitive
                   
-header            = header-name ":" *lws header-value *lws
+header            = header-name ":" *LWS header-value *LWS
 header-name       = 1*header-content-nc
 header-value      = header-content
-                    [ *( header-content / lws ) header-content ]
+                    [ *( header-content / LWS ) header-content ]
 header-content    = header-content-nc / ":"
 header-content-nc = ( %x00-08 / %x0B-0C / %x0E-1F / %x21-39 / %x3B-FF )
                   
-invalid-header    = ( [ ":" *lws ] 1*header-content-nc [ *lws ":" ] / 1*":" /
-                    1*header-content-nc 1*lws ":" *lws header-content
-                    [ *( header-content / lws ) header-content ] ) *lws
+invalid-header    = ( [ ":" *LWS ] 1*header-content-nc [ *LWS ":" ] / 1*":" /
+                    1*header-content-nc 1*LWS ":" *LWS header-content
+                    [ *( header-content / LWS ) header-content ] ) *LWS
 				]]></artwork>
 			</figure>
 		</section>
