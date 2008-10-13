@@ -146,10 +146,10 @@
                   converted to <xref target="RFC5234"/> ABNF:</preamble>
                 <artwork><![CDATA[
 LWS               = [ [ CR ] LF ] 1*( SP / HTAB )
-                        ; This is changed from RFC2616, as CR is now optional
-                        ; within the already optional line break sequence (this
-                        ; is suggested in RFC2616's section 19.3, "Tolerant
-                        ; Applications").
+                        ; This is changed from RFC2616, as CR is now
+                        ; optional within the already optional line
+                        ; break sequence (this is suggested in RFC2616's
+                        ; section 19.3, "Tolerant Applications").
                   
 separators        = "(" / ")" / "<" / ">" / "@" / "," / ";" / ":" / "\"
                     / DQUOTE / "/" / "[" / "]" / "?" / "=" / "{" / "}"
@@ -275,9 +275,10 @@ header-value      = header-content
 header-content    = header-content-nc / ":"
 header-content-nc = ( %x00-08 / %x0B-0C / %x0E-1F / %x21-39 / %x3B-FF )
                   
-invalid-header    = ( [ ":" *LWS ] 1*header-content-nc [ *LWS ":" ] / 1*":" /
-                    1*header-content-nc 1*LWS ":" *LWS header-content
-                    [ *( header-content / LWS ) header-content ] ) *LWS
+invalid-header    = ( [ ":" *LWS ] 1*header-content-nc [ *LWS ":" ] /
+                    1*":" / 1*header-content-nc 1*LWS ":" *LWS
+                    header-content [ *( header-content / LWS )
+                    header-content ] ) *LWS
                 ]]></artwork>
             </figure>
         </section>
@@ -305,7 +306,8 @@ request-uri       = "*" / absolute-uri / path-absolute / authority
 response          = status-line *( ( header / invalid-header )
                     [ CR ] LF ) [ CR ] LF message-body
                   
-status-line       = http-version SP status-code [ SP reason-phrase ] [ CR ] LF
+status-line       = http-version SP status-code [ SP reason-phrase ]
+                    [ CR ] LF
 status-code       = 3DIGIT                  
 reason-phrase     = *( %x00-09 / %x0B-0C / %x0E-FF )
                         ; Everything except CR and LF
