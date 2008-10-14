@@ -83,7 +83,7 @@ function new_xhr()
 	return window.XMLHttpRequest ? new window.XMLHttpRequest() : new ActiveXObject('MSXML2.XMLHTTP.3.0');
 }
 
-function run_test(test)
+function run_test(test, strict)
 {
 	var ok = false;
 	var expected_xhr = new_xhr();
@@ -93,7 +93,12 @@ function run_test(test)
 		{
 			return;
 		}
-		if (expected_xhr.status != 200)
+		if (expected_xhr.status == 404)
+		{
+			log('Failed to get ' + test + '.expected: got HTTP status ' + expected_xhr.status);
+			return;
+		}
+		else if (expected_xhr.status != 200)
 		{
 			log('Failed to get ' + test + '.expected: got HTTP status ' + expected_xhr.status);
 			return;
@@ -116,37 +121,13 @@ function run_test(test)
 			}
 			ok = compare(expected, test_xhr);
 		}
-		if (navigator.userAgent.match(/Gecko\/\d+/))
-		{
-			test_xhr.onload = function(e)
-			{
-				var evt = window.event ? window.event : e;
-				var targ = evt.target ? evt.target : evt.srcElement;
-				test_xhr_onreadystatechange();
-			}
-		}
-		else
-		{
-			test_xhr.onreadystatechange = test_xhr_onreadystatechange;
-		}
 		test_xhr.open('GET', 'tests/' + test + '.http', false);
 		test_xhr.send(null);
-	}
-	if (navigator.userAgent.match(/Gecko\/\d+/))
-	{
-		expected_xhr.onload = function(e)
-		{
-			var evt = window.event ? window.event : e;
-			var targ = evt.target ? evt.target : evt.srcElement;
-			expected_xhr_onreadystatechange();
-		}
-	}
-	else
-	{
-		expected_xhr.onreadystatechange = expected_xhr_onreadystatechange;
+		test_xhr_onreadystatechange();
 	}
 	expected_xhr.open('GET', 'expected/' + test + '.expected', false);
 	expected_xhr.send(null);
+	expected_xhr_onreadystatechange();
 	return ok;
 }
 
@@ -165,6 +146,8 @@ function start()
 		test_names.push(m[1]);
 	}
 	
+	var strict = (document.getElementsByTagName("option")[0].value == "Strict") ? true : false;
+	
 	var passes = 0;
 	for (var i = 0; i < test_names.length; i++)
 	{
@@ -172,7 +155,7 @@ function start()
 		log('Test ' + (i + 1) + ': ' + test_names[i]);
 		try
 		{
-			var pass = run_test(test_names[i]);
+			var pass = run_test(test_names[i], strict);
 		}
 		catch(e)
 		{
