@@ -86,6 +86,17 @@ function new_xhr()
 function run_test(test, strict)
 {
 	var ok = false;
+	var expected = get_expected(test, strict);
+	var test = get_test(test, strict);
+	if (expected == false || test == false)
+	{
+	   return false;
+    }
+    return compare(expected, test);
+}
+
+function get_expected(test, strict)
+{
 	var expected_xhr = new_xhr();
 	expected_xhr.open('GET', 'expected/' + test + '.expected', false);
 	expected_xhr.send(null);
@@ -95,7 +106,7 @@ function run_test(test, strict)
     }
     if (expected_xhr.status == 404  && strict != null)
     {
-        return run_test((strict ? "strict" : "non-strict") + "/" + test, null);
+        return get_expected((strict ? "strict" : "non-strict") + "/" + test, null);
     }
     else if (expected_xhr.status != 200)
     {
@@ -104,13 +115,17 @@ function run_test(test, strict)
     }
     try
     {
-        var expected = eval('(' + expected_xhr.responseText + ')');
+        return eval('(' + expected_xhr.responseText + ')');
     }
     catch (e)
     {
         log('Failed to parse ' + test + '.expected: ' + e);
         return false;
     }
+}
+
+function get_test(test, strict)
+{
     var test_xhr = new_xhr();
     test_xhr.open('GET', 'tests/' + test + '.http', false);
     test_xhr.send(null);
@@ -118,7 +133,7 @@ function run_test(test, strict)
     {
         return false;
     }
-    return compare(expected, test_xhr);
+    return test_xhr;
 }
 
 function start()
@@ -136,7 +151,7 @@ function start()
 		test_names.push(m[1]);
 	}
 	
-	var strict = (document.getElementsByTagName("option")[0].value == "Strict") ? true : false;
+	var strict = (document.getElementsByTagName("select")[0].value == "Strict") ? true : false;
 	
 	var passes = 0;
 	for (var i = 0; i < test_names.length; i++)
