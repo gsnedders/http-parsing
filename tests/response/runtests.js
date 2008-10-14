@@ -87,48 +87,38 @@ function run_test(test, strict)
 {
 	var ok = false;
 	var expected_xhr = new_xhr();
-	expected_xhr_onreadystatechange = function()
-	{
-		if (expected_xhr.readyState != 4)
-		{
-			return;
-		}
-		if (expected_xhr.status == 404)
-		{
-			log('Failed to get ' + test + '.expected: got HTTP status ' + expected_xhr.status);
-			return;
-		}
-		else if (expected_xhr.status != 200)
-		{
-			log('Failed to get ' + test + '.expected: got HTTP status ' + expected_xhr.status);
-			return;
-		}
-		try
-		{
-			var expected = eval('(' + expected_xhr.responseText + ')');
-		}
-		catch (e)
-		{
-			log('Failed to parse ' + test + '.expected: ' + e);
-			return;
-		}
-		var test_xhr = new_xhr();
-		test_xhr_onreadystatechange = function()
-		{
-			if (test_xhr.readyState != 4)
-			{
-				return;
-			}
-			ok = compare(expected, test_xhr);
-		}
-		test_xhr.open('GET', 'tests/' + test + '.http', false);
-		test_xhr.send(null);
-		test_xhr_onreadystatechange();
-	}
 	expected_xhr.open('GET', 'expected/' + test + '.expected', false);
 	expected_xhr.send(null);
-	expected_xhr_onreadystatechange();
-	return ok;
+    if (expected_xhr.readyState != 4)
+    {
+        return false;
+    }
+    if (expected_xhr.status == 404  && strict != null)
+    {
+        return run_test((strict ? "strict" : "non-strict") + "/" + test, null);
+    }
+    else if (expected_xhr.status != 200)
+    {
+        log('Failed to get ' + test + '.expected: got HTTP status ' + expected_xhr.status);
+        return false;
+    }
+    try
+    {
+        var expected = eval('(' + expected_xhr.responseText + ')');
+    }
+    catch (e)
+    {
+        log('Failed to parse ' + test + '.expected: ' + e);
+        return false;
+    }
+    var test_xhr = new_xhr();
+    test_xhr.open('GET', 'tests/' + test + '.http', false);
+    test_xhr.send(null);
+    if (test_xhr.readyState != 4)
+    {
+        return false;
+    }
+    return compare(expected, test_xhr);
 }
 
 function start()
