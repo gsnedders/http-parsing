@@ -7,7 +7,7 @@
 	
 	"headers": {
 		"connection": "close",
-		"content-type": "text/plain"
+		"content-type": "text/html"
 	},
 	
 	"body": "Test"
