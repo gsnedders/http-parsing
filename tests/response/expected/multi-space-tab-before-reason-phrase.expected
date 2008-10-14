@@ -1,0 +1,13 @@
+{
+	"HTTP": {
+		"version": "1.1",
+		"status": 999,
+		"reason": "Foobar"
+	},
+	
+	"headers": {
+		"connection": "close"
+	},
+	
+	"body": "Test"
+}
