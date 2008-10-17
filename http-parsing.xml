@@ -288,7 +288,9 @@ invalid-header    = ( [ ":" *LWS ] 1*header-content-nc [ *LWS ":" ] /
                 <artwork><![CDATA[
 request           = simple-request / full-request
 
-simple-request    = "GET" absolute-uri / path-absolute [ CR ] LF
+simple-request    = get absolute-uri / path-absolute [ CR ] LF
+get               = %x47.45.54
+                        ; "GET" case-sensitively
 
 full-request      = request-line *( ( header / invalid-header )
                     [ CR ] LF ) [ CR ] LF message-body
