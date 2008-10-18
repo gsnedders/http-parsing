@@ -308,8 +308,8 @@ request-uri       = "*" / absolute-uri / path-absolute / authority
 response          = status-line *( ( header / invalid-header )
                     [ CR ] LF ) [ CR ] LF message-body
                   
-status-line       = http-version SP status-code [ SP reason-phrase ]
-                    [ CR ] LF
+status-line       = http-version [ SP [ status-code [ SP
+                    [ reason-phrase ] ] ] ] [ CR ] LF
 status-code       = 3DIGIT                  
 reason-phrase     = *( %x00-09 / %x0B-0C / %x0E-FF )
                         ; Everything except CR and LF
