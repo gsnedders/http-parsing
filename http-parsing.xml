@@ -305,11 +305,11 @@ request-uri       = "*" / absolute-uri / path-absolute / authority
         <section title="Responses">          
             <figure>
                 <artwork><![CDATA[
-response          = status-line *( ( header / invalid-header )
+response          = status-line [ CR ] LF *( ( header / invalid-header )
                     [ CR ] LF ) [ CR ] LF message-body
                   
 status-line       = http-version [ SP [ status-code [ SP
-                    [ reason-phrase ] ] ] ] [ CR ] LF
+                    [ reason-phrase ] ] ] ]
 status-code       = 1*DIGIT                  
 reason-phrase     = 1*( %x00-09 / %x0B-0C / %x0E-7F )
                         ; All US-ASCII except CR and LF
