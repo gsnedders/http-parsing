@@ -58,15 +58,18 @@ function compare(exp, got)
 	// Check each and every header matches expected
 	for (var n in exp.headers)
 	{
-		var exp_v = exp.headers[n];
-		var got_v = got.getResponseHeader(n);
-		if (typeof got_v == "string" && is_case_insensitive_header(n))
+		if (!window.opera || n != "connection")
 		{
-			got_v = got_v.toLowerCase();
-		}
-		if (exp_v != got_v)
-		{
-			fail('Got "' + n + '" header "' + String(got_v) + '", expected "' + String(exp_v) + '"');
+			var exp_v = exp.headers[n];
+			var got_v = got.getResponseHeader(n);
+			if (typeof got_v == "string" && is_case_insensitive_header(n))
+			{
+				got_v = got_v.toLowerCase();
+			}
+			if (exp_v != got_v)
+			{
+				fail('Got "' + n + '" header "' + String(got_v) + '", expected "' + String(exp_v) + '"');
+			}
 		}
 	}
 	// Check the body matches expected
