@@ -310,9 +310,9 @@ response          = status-line *( ( header / invalid-header )
                   
 status-line       = http-version [ SP [ status-code [ SP
                     [ reason-phrase ] ] ] ] [ CR ] LF
-status-code       = 3DIGIT                  
-reason-phrase     = *( %x00-09 / %x0B-0C / %x0E-FF )
-                        ; Everything except CR and LF
+status-code       = 1*DIGIT                  
+reason-phrase     = 1*( %x00-09 / %x0B-0C / %x0E-7F )
+                        ; All US-ASCII except CR and LF
                 ]]></artwork>
             </figure>
             
