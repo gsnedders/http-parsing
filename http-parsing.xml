@@ -104,6 +104,9 @@
             <t>Look at behaviour for things apart from HTTP/1.</t>
             
             <t>Actually test responses.</t>
+            
+            <t>Aim: any response starting with http-version should have
+              defined behaviour, and not fallback to HTTP/0.9.</t>
         </list></t>
     </note>
 </front>
@@ -249,6 +252,8 @@ quoted-pair       = "\" CHAR
             <t>There are any matches for the invalid-header rule, or</t>
             <t>There are any matches for header-name that do not also match the
               token rule.</t>
+            <t>There is a match for sp-garbage.</t>
+            <t>There is a match for code-garbage.</t>
           </list>
         </t>
         
@@ -308,11 +313,17 @@ request-uri       = "*" / absolute-uri / path-absolute / authority
 response          = status-line [ CR ] LF *( ( header / invalid-header )
                     [ CR ] LF ) [ CR ] LF message-body
                   
-status-line       = http-version [ SP [ status-code [ SP
-                    [ reason-phrase ] ] ] ]
+status-line       = http-version ( 1*SP ( status-code ( 1*SP
+                    [ reason-phrase ] / sp-garbage ) / code-garbage )
+                    / sp-garbage )
 status-code       = 1*DIGIT                  
 reason-phrase     = 1*( %x00-09 / %x0B-0C / %x0E-7F )
                         ; All US-ASCII except CR and LF
+sp-garbage        = [ ( %x00-09 / %x0B-0C / %x0E-19 / %x21-FF )
+                    status-garbage ]
+code-garbage      = [ ( %x00-09 / %x0B-0C / %x0E-2F / %x3A-FF )
+                    status-garbage ]
+status-garbage    = *( %x00-09 / %x0B-0C / %x0E-FF )
                 ]]></artwork>
             </figure>
             
